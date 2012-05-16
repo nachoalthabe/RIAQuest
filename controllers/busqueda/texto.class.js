@@ -1,0 +1,5 @@
+new Class({
+	initialize: function(){
+		
+	}
+});
