@@ -1,12 +1,13 @@
 var App = new Class({
   Implements : [ Options, Events ],
-  Binds : [ 'initApp' ],// Funciones que simpre se ejecutan en contexto this
-  _views : new ViewsCatBag(),
-  _controllers : new ControllersCatBag(),
-  _models : new ModelsCatBag(),
-  _services : new ServicesCatBag(),
-  _properties : new PropertiesCatBag(),
+  Binds : [ 'initApp','_getName' ],// Funciones que simpre se ejecutan en contexto this
+  _views : {},//CatBag
+  _controllers : {},
+  _models : {},
+  _services : {},
+  _properties : {},
   options : {
+  	name: 'Application',
     folders : {// Las carpetas donde se encuentra cada cosa
       base: 'resources/',
       views : 'views/',
@@ -16,7 +17,7 @@ var App = new Class({
       properties : 'properties/'
     },
     resources : {// Lista de cosas a cargar
-      views : [],
+      views : ['index'],
       controllers : ['index'],
       models : [],
       services: [],
@@ -51,25 +52,33 @@ var App = new Class({
   getResources: function(component){
     return this.options.resources[component];
   },
+  _getName: function(){
+  	return this.options.name;
+  },
   initialize : function(options) {
     if (options)
       this.setOptions(options);
     // Preparo la iniciacion del app
     
-    // Inicializo las CatBags
-    this._views.setApp(this);
-    this._controllers.setApp(this);
-    this._models.setApp(this);
-    this._services.setApp(this);
-    this._properties.setApp(this);
+    this.__defineGetter__("Name", this._getName);
     
-    this.initApp();
+    // Inicializo las CatBags
+    this._views= new ViewsCatBag();
+    this._controllers = new ControllersCatBag();
+    this._models = new ModelsCatBag();
+    this._services = new ServicesCatBag();
+    this._properties = new PropertiesCatBag();
+    this._views.setContext(this);
+    this._controllers.setContext(this);
+    this._models.setContext(this);
+    this._services.setContext(this);
+    this._properties.setContext(this);
   },
   executeController: function(controllerName,params){
     var controller = this.getController(controllerName);
     controller['execute'].apply(controller,[params]);
   },
-  initApp : function() {
+  run : function() {
     this.executeController(this.options.init.controller,this.options.init.arguments);
   }
 });

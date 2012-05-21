@@ -1,0 +1,6 @@
+algo = {
+  Extends: View,
+  init: function(params){
+    console.log('View',this.options);
+  }
+}

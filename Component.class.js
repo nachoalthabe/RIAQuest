@@ -4,10 +4,11 @@ var Component = new Class({
     if (params)
       this.setOptions(params);
   },
-  setApp: function(app){
+  setContext: function(app,params){
+  	this.setOptions(params);
     this._app = app;
     if(this.init)
-      this.init()
+      this.init();
     return this;
   },
-})
+});
