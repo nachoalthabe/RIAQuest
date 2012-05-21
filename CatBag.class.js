@@ -56,9 +56,14 @@ var CatBag = new Class({
 		}
 		
 		var id = this.getSourceAccessPath(resource,true);
-		
-		var scriptElement = '<script id="'+id+'" type="text/javascript">var '+id+' = new Class('+content+')</script>';
-		document.write(scriptElement);
+    
+		var script = 'var '+id+' = new Class('+content+')';
+		var scriptElement = document.createElement('script');
+		scriptElement.type = 'text/javascript';
+		scriptElement.id = id;
+		scriptElement.text = script;
+    
+    document.head.appendChild(scriptElement);
 		
 		return id;
 	},
@@ -113,7 +118,7 @@ var PropertiesCatBag = new Class({
 	_getResourceUrl : function(filename) {
 		return this._folder + filename + '.json';
 	},
-	initResource : function(resource) {
-		return JSON.decode(resource);
+	initResource : function(resource,content) {
+		return JSON.decode(content);
 	}
 });

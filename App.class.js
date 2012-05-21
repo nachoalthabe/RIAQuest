@@ -17,17 +17,15 @@ var App = new Class({
       properties : 'properties/'
     },
     resources : {// Lista de cosas a cargar
-      views : ['index'],
-      controllers : ['index'],
+      views : [],
+      controllers : [],
       models : [],
       services: [],
       properties : []
     },
     init : {// Configuracion del controller que se dispara la primera vez
-      controller: 'index',// Nombre del controller
-      arguments: {
-        msg: 'Hello Word'
-      }
+      controller: '',// Nombre del controller
+      arguments: {}
     // Argumentos que recibe
     }
   },
@@ -79,6 +77,7 @@ var App = new Class({
     controller['execute'].apply(controller,[params]);
   },
   run : function() {
-    this.executeController(this.options.init.controller,this.options.init.arguments);
+    if(this.options.init.controller != '')
+      this.executeController(this.options.init.controller,this.options.init.arguments);
   }
 });
