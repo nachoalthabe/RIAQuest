@@ -8,14 +8,14 @@ var CatBag = new Class({
 		this._folder = this._app.getFolderPath(name);
 		this._resources = this._app.getResources(name);
 		while (this._resources.length > 0) {
-			this._loadResources(this._resources.pop());
+			this._loadResource(this._resources.pop());
 		}
 		;
 	},
 	_getResourceUrl : function(resource) {
-		return this._folder + resource + '.js';
+		return this._folder + resource + '.jsclass';
 	},
-	_loadResources : function(resource) {
+	_loadResource : function(resource) {
 		var url = this._getResourceUrl(resource);
 		var req = new Request({
 			url : url,
@@ -25,10 +25,11 @@ var CatBag = new Class({
 				throw ('Unable to load resource ' + resource);
 			}
 		}).get();
-		this._resources[resource] = this.initResource({
-			name : resource,
-			content : req.response.text+''
-		});
+
+		var content = req.response.text.toString();
+		content = content.replace(/[\w\W]+?\n+?/,"");
+		content = "{\n"+content;//Para que no se rompa todo...
+		this._resources[resource] = this.initResource(resource,content);
 	},
 	getSourceAccessPath: function(resource,withUnderscore){
 		var result;
@@ -39,16 +40,22 @@ var CatBag = new Class({
 		}
 		return result;
 	},
-	initResource : function(resource) {
-		var id = this.getSourceAccessPath(resource.name,true);
+	getInstanceAccessPath: function(resource,withUnderscore){
+		var result;
+		if(!withUnderscore){
+			result = this._app.Name+'.instances.'+this.Name+'.'+resource;
+		}else{
+			result = this._app.Name+'_instances_'+this.Name+'_'+resource;
+		}
+		return result;
+	},
+	initResource : function(resource,content) {
 		
 		if(this._resources[resource]){
-			return id
+			return this._resources[resource];
 		}
 		
-		var content = resource.content.toString();
-		content = content.replace(/[\w\W]+?\n+?/,"");
-		content = "{\n"+content;//Para que no se rompa todo...
+		var id = this.getSourceAccessPath(resource,true);
 		
 		var scriptElement = '<script id="'+id+'" type="text/javascript">var '+id+' = new Class('+content+')</script>';
 		document.write(scriptElement);
@@ -59,9 +66,10 @@ var CatBag = new Class({
 		if (!this._resources[resource])
 			throw ('Unable to load unexist resource ' + resource);
 		//var response = new window[this._resources[resource]]();
+		//var scriptElement = '<script id="'+id+'" type="text/javascript">var '+id+' = new (new Class('+this._resources[resource]+'))();</script>';
+		//document.write(scriptElement);
 		var id = this.getSourceAccessPath(resource,true)+'_'+String.uniqueID();
-		var scriptElement = '<script id="'+id+'" type="text/javascript">var '+id+' = new '+this._resources[resource]+'();</script>';
-		document.write(scriptElement);
+		window[id] = new window[this._resources[resource]]();
 		window[id].setContext(this._app,params);
 		return window[id];
 	}
@@ -74,13 +82,13 @@ var SingletonCatBag = new Class({
 			if (!this._resources[resource])
 				throw ('Unable to load unexist resource ' + this.getSourceAccessPath(resource));
 			
-			var id = this.getSourceAccessPath(resource,true)+'_'+String.uniqueID();
-			var scriptElement = '<script id="'+id+'" type="text/javascript">var '+id+' = new '+this._resources[resource]+'();</script>';
-			document.write(scriptElement);
+			var id = this.getInstanceAccessPath(resource,true)+'_singleton';
 			
+			window[id] = new window[this._resources[resource]]();
 			window[id].setContext(this._app,false);
-		}
-		return window[id];
+			this._instances[resource] = id;
+		};
+		return window[this._instances[resource]];
 	}
 });
 var ViewsCatBag = new Class({
