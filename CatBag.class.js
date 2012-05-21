@@ -6,9 +6,9 @@ var CatBag = new Class({
 	init : function() {
 		var name = this.Name.toLowerCase();
 		this._folder = this._app.getFolderPath(name);
-		this._resources = this._app.getResources(name);
-		while (this._resources.length > 0) {
-			this._loadResource(this._resources.pop());
+		var toLoad = this._app.getResources(name);
+		while (toLoad.length > 0) {
+			this._loadResource(toLoad.pop());
 		}
 		;
 	},
@@ -68,8 +68,8 @@ var CatBag = new Class({
 		//var response = new window[this._resources[resource]]();
 		//var scriptElement = '<script id="'+id+'" type="text/javascript">var '+id+' = new (new Class('+this._resources[resource]+'))();</script>';
 		//document.write(scriptElement);
-		var id = this.getSourceAccessPath(resource,true)+'_'+String.uniqueID();
-		window[id] = new window[this._resources[resource]]();
+		var id = this.getInstanceAccessPath(resource,true)+'_'+String.uniqueID();
+		window[id] = new window[this._resources[resource]](id);
 		window[id].setContext(this._app,params);
 		return window[id];
 	}
@@ -84,7 +84,7 @@ var SingletonCatBag = new Class({
 			
 			var id = this.getInstanceAccessPath(resource,true)+'_singleton';
 			
-			window[id] = new window[this._resources[resource]]();
+			window[id] = new window[this._resources[resource]](id);
 			window[id].setContext(this._app,false);
 			this._instances[resource] = id;
 		};

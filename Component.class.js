@@ -1,8 +1,7 @@
 var Component = new Class({
   Implements: [Options,Events],
-  initialize: function(params){
-    if (params)
-      this.setOptions(params);
+  initialize: function(id){
+  	this.id = id;
   },
   setContext: function(app,params){
   	this.setOptions(params);
@@ -11,4 +10,7 @@ var Component = new Class({
       this.init();
     return this;
   },
+  killMe: function(){
+  	delete window[this.id];
+  }
 });
