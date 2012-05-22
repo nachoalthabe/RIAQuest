@@ -1,4 +1,4 @@
-Algo = {//TODO: para que se puede usar??
+controller_index = {
   Extends: Controller,
   init: function(){
 		

@@ -3,7 +3,11 @@ var Component = new Class({
   initialize: function(id){
   	this.id = id;
   },
-  setContext: function(app,params){
+  addEventListener: function(eventName,callback){
+  	this._app.addEventListener(eventName,callback.bind(this));
+  },
+  setContext: function(app,sourceFolder,params){
+  	this.sourceFolder = sourceFolder;
   	this.setOptions(params);
     this._app = app;
     if(this.init)
@@ -11,6 +15,9 @@ var Component = new Class({
     return this;
   },
   killMe: function(){
-  	delete window[this.id];
+  	if(this.container){
+  		this.container.destroy()
+  	}
+    delete window[this.id];
   }
 });

@@ -1,6 +1,6 @@
-new Class({
+model_index = {
   Extends: Model,
   init: function(){
     
   }
-});
+}

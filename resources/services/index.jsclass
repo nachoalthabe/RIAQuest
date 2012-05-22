@@ -1,6 +1,6 @@
-new Class({
+service_index = {
   Extends: Service,
   init: function(){
     
   }
-});
+}

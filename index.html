@@ -4,7 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Test vCmP</title>
 
-<script type="text/javascript" src="libs/mootools-core-1.4.5-full-nocompat.js"></script>
+<script type="text/javascript"
+	src="libs/mootools-core-1.4.5-full-nocompat.js"></script>
 <script type="text/javascript" src="libs/mootools-more-1.4.0.1.js"></script>
 
 <script type="text/javascript" src="Component.class.js"></script>
@@ -18,7 +19,14 @@
 
 <script type="text/javascript">
 	app = new App({
-		name: 'demoApp'
+		name : 'demoApp',
+		resources : {// Lista de cosas a cargar
+			views : ['index'],
+			controllers : ['index'],
+			models : ['index'],
+			services : ['index'],
+			properties : ['default']
+		}
 	});
 	app.run();
 </script>

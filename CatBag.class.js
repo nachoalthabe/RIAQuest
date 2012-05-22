@@ -12,8 +12,12 @@ var CatBag = new Class({
 		}
 		;
 	},
-	_getResourceUrl : function(resource) {
-		return this._folder + resource + '.jsclass';
+	_getResourceUrl : function(resource,onlyFolder) {
+		if(!onlyFolder){
+			return this._folder + resource + '.jsclass';
+		}else{
+			return this._folder;
+		}
 	},
 	_loadResource : function(resource) {
 		var url = this._getResourceUrl(resource);
@@ -57,13 +61,15 @@ var CatBag = new Class({
 		
 		var id = this.getSourceAccessPath(resource,true);
     
-		var script = 'var '+id+' = new Class('+content+')';
+		var script = 'var '+id+' = new Class('+content+')'+"\n\n//@ sourceURL=/"+this._getResourceUrl(resource)+"\n\n";
 		var scriptElement = document.createElement('script');
 		scriptElement.type = 'text/javascript';
 		scriptElement.id = id;
 		scriptElement.text = script;
+		scriptElement.name = id;
     
     document.head.appendChild(scriptElement);
+		//window[id] = eval(script);
 		
 		return id;
 	},
@@ -75,7 +81,7 @@ var CatBag = new Class({
 		//document.write(scriptElement);
 		var id = this.getInstanceAccessPath(resource,true)+'_'+String.uniqueID();
 		window[id] = new window[this._resources[resource]](id);
-		window[id].setContext(this._app,params);
+		window[id].setContext(this._app,this._getResourceUrl(resource,true),params);
 		return window[id];
 	}
 });
@@ -87,10 +93,10 @@ var SingletonCatBag = new Class({
 			if (!this._resources[resource])
 				throw ('Unable to load unexist resource ' + this.getSourceAccessPath(resource));
 			
-			var id = this.getInstanceAccessPath(resource,true)+'_singleton';
+			var id = this.getInstanceAccessPath(resource,this._getResourceUrl(resource),true)+'_singleton';
 			
 			window[id] = new window[this._resources[resource]](id);
-			window[id].setContext(this._app,false);
+			window[id].setContext(this._app,this._getResourceUrl(resource,true),false);
 			this._instances[resource] = id;
 		};
 		return window[this._instances[resource]];
@@ -98,7 +104,14 @@ var SingletonCatBag = new Class({
 });
 var ViewsCatBag = new Class({
 	Extends : CatBag,
-	Name : 'Views'
+	Name : 'Views',
+	_getResourceUrl : function(resource,onlyFolder) {
+		if(!onlyFolder){
+			return this._folder + resource + '/'+ resource + '.jsclass';
+		}else{
+			return this._folder + resource + '/';
+		}
+	}
 });
 var ControllersCatBag = new Class({
 	Extends : SingletonCatBag,

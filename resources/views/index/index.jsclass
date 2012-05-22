@@ -1,0 +1,17 @@
+view_index = {
+  Extends: View,
+  init: function(params){
+    console.log('View',this.options);
+    var theme = this.getTheme('theme1');
+    var vars= {
+    		texto1: new Element('strong',{
+    			text: 'Nada'
+    		}),
+    		texto2: 'Otra'
+    }
+    this.appendView(theme.substitute(vars));
+    this.container.getElement('button').addEvent('click',function(){
+    	this.killMe();
+    }.bind(this));
+  }
+}
