@@ -3,7 +3,7 @@ var CatBag = new Class({
 	_app : undefined,// Contendra una referencia al App
 	_folder : undefined,
 	_resources : {},// Contendra el mapa de clases
-	init : function() {
+	init: function() {
 		var name = this.Name.toLowerCase();
 		this._folder = this._app.getFolderPath(name);
 		var toLoad = this._app.getResources(name);
@@ -14,7 +14,7 @@ var CatBag = new Class({
 	},
 	_getResourceUrl : function(resource,onlyFolder) {
 		if(!onlyFolder){
-			return this._folder + resource + '.jsclass';
+			return this._folder + resource + '_' + this.Name.slice(0,this.Name.length-1).toLowerCase() + '.jsclass';
 		}else{
 			return this._folder;
 		}
@@ -61,7 +61,7 @@ var CatBag = new Class({
 		
 		var id = this.getSourceAccessPath(resource,true);
     
-		var script = 'var '+id+' = new Class('+content+')'+"\n\n//@ sourceURL=/"+this._getResourceUrl(resource)+"\n\n";
+		var script = "\n//@ sourceURL=res:/"+this._getResourceUrl(resource)+' \n\n var '+id+' = new Class('+content+')'+"\n\n//@ sourceURL=res:/"+this._getResourceUrl(resource)+"\n\n";
 		var scriptElement = document.createElement('script');
 		scriptElement.type = 'text/javascript';
 		scriptElement.id = id;
@@ -81,7 +81,12 @@ var CatBag = new Class({
 		//document.write(scriptElement);
 		var id = this.getInstanceAccessPath(resource,true)+'_'+String.uniqueID();
 		window[id] = new window[this._resources[resource]](id);
-		window[id].setContext(this._app,this._getResourceUrl(resource,true),params);
+		window[id].setContext({
+		  app: this._app,
+		  folder: this._getResourceUrl(resource,true),
+		  params: params,
+		  name: resource
+		});
 		return window[id];
 	}
 });
@@ -96,7 +101,12 @@ var SingletonCatBag = new Class({
 			var id = this.getInstanceAccessPath(resource,this._getResourceUrl(resource),true)+'_singleton';
 			
 			window[id] = new window[this._resources[resource]](id);
-			window[id].setContext(this._app,this._getResourceUrl(resource,true),false);
+			window[id].setContext({
+	      app: this._app,
+	      folder: this._getResourceUrl(resource,true),
+	      params: false,
+	      name: resource
+	    });
 			this._instances[resource] = id;
 		};
 		return window[this._instances[resource]];
@@ -107,7 +117,7 @@ var ViewsCatBag = new Class({
 	Name : 'Views',
 	_getResourceUrl : function(resource,onlyFolder) {
 		if(!onlyFolder){
-			return this._folder + resource + '/'+ resource + '.jsclass';
+			return this._folder + resource + '/'+ resource + '_' + this.Name.slice(0,this.Name.length-1).toLowerCase() + '.jsclass';
 		}else{
 			return this._folder + resource + '/';
 		}
