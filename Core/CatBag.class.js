@@ -61,15 +61,21 @@ var CatBag = new Class({
 		
 		var id = this.getSourceAccessPath(resource,true);
     
-		var script = "\n//@ sourceURL=res:/"+this._getResourceUrl(resource)+' \n\n var '+id+' = new Class('+content+')'+"\n\n//@ sourceURL=res:/"+this._getResourceUrl(resource)+"\n\n";
-		var scriptElement = document.createElement('script');
-		scriptElement.type = 'text/javascript';
-		scriptElement.id = id;
-		scriptElement.text = script;
-		scriptElement.name = id;
-    
-    document.head.appendChild(scriptElement);
-		//window[id] = eval(script);
+		var annotation = "\n//@ sourceURL=/"+this._getResourceUrl(resource)+"\n\n";
+		
+		if(false){
+			var script = annotation+"\n\nvar "+id+" = new Class("+content+")"+annotation;
+			var scriptElement = document.createElement('script');
+			scriptElement.type = 'text/javascript';
+			scriptElement.id = id;
+			scriptElement.text = script;
+			scriptElement.name = id;
+			document.head.appendChild(scriptElement);
+		}else{
+			var script = annotation+'new Class('+content+');'+annotation;
+		}
+		
+		window[id] = eval(script);
 		
 		return id;
 	},
@@ -80,7 +86,12 @@ var CatBag = new Class({
 		//var scriptElement = '<script id="'+id+'" type="text/javascript">var '+id+' = new (new Class('+this._resources[resource]+'))();</script>';
 		//document.write(scriptElement);
 		var id = this.getInstanceAccessPath(resource,true)+'_'+String.uniqueID();
-		window[id] = new window[this._resources[resource]](id);
+		if(true){
+			window[id] = new window[this._resources[resource]](id);
+		}else{
+			window[id] = new Class(window[this._resources[resource]])(id);
+		}
+		
 		window[id].setContext({
 		  app: this._app,
 		  folder: this._getResourceUrl(resource,true),
