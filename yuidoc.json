@@ -1,0 +1,13 @@
+{
+    "name": "RIAQuest",
+    "description": "RIAQuest JavaScript Framework",
+    "version": "0.1.0",
+    "url": "http://riaquest.com/",
+    "options": {
+        "linkNatives": "true",        
+        "attributesEmit": "true",
+        "selleck": "true",
+        "paths": ["./Core"],
+        "outdir": "./Docs"
+    }
+}

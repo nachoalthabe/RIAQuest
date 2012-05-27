@@ -1,158 +1,170 @@
-var CatBag = new Class({
-	Extends : Component,
-	_app : undefined,// Contendra una referencia al App
-	_folder : undefined,
-	_resources : {},// Contendra el mapa de clases
-	init: function() {
-		var name = this.Name.toLowerCase();
-		this._folder = this._app.getFolderPath(name);
-		var toLoad = this._app.getResources(name);
-		while (toLoad.length > 0) {
-			this._loadResource(toLoad.pop());
-		}
-		;
-	},
-	_getResourceUrl : function(resource,onlyFolder) {
-		if(!onlyFolder){
-			return this._folder + resource + '_' + this.Name.slice(0,this.Name.length-1).toLowerCase() + '.jsclass';
-		}else{
-			return this._folder;
-		}
-	},
-	_loadResource : function(resource) {
-		var url = this._getResourceUrl(resource);
-		var req = new Request({
-			url : url,
-			async : false,
-			evalResponse: false,
-			onFailure : function() {
-				throw ('Unable to load resource ' + resource);
-			}
-		}).get();
+/**
+ * @class CatBag
+ * @module CatBag
+ * @return CatBag
+ * @constructor
+*/
+var CatBag = new Class(
+		{
+			/**
+			 * @protected
+			 * @property app
+			 * @type Application
+			 * @default undefined
+			 */
+			app: undefined,
+			/**
+			 * @protected
+			 * @property resources
+			 * @type [Component]*
+			 * @default []
+			 */
+			resources: [],
+			/**
+			 * @protected
+			 * @method init
+			 * @param {Application} app
+			 * @returns {CatBag}
+			 */
+			init : function(app) {
+				this.app = app;
+				this.folder = this.app.getCatBagFolderPath(this.name);
+				var toLoad = this.app.getCatBagResources(this.name);
+				while (toLoad.length > 0) {
+					this.getResource(toLoad.pop());
+				}
+				return this;
+			},
+			/**
+			 * @method getResourceFilename
+			 * @param {String} resourceName
+			 * @param {Boolean} withExtencion
+			 * @returns {String}
+			 */
+			getResourceFilename : function(resourceName, withExtencion) {
+				var result = resourceName + '_'
+						+ this.name.slice(0, this.name.length - 1);
+				if (withExtencion) {
+					result += '.jsclass';
+				}
+				return result;
+			},
+			/**
+			 * @method getResourcePath
+			 * @param {String} resourceName
+			 * @param {Boolean} withFilename
+			 * @returns {String}
+			 */
+			getResourcePath : function(resourceName, withFilename) {
+				var response = this.folder;
+				if (withFilename) {
+					response += this.getResourceFilename(resourceName, true);
+				}
+				return response;
+			},
+			/**
+			 * @method getClassID
+			 * @param {String} resourceName
+			 * @param {String} separator
+			 * @returns {String}
+			 */
+			getClassID : function(resourceName, separator) {
+				var result = [ this.app.name, 'sources', this.name,
+						resourceName ];
+				return result.join((separator) ? separator : '_');
+			},
+			/**
+			 * @method getInstanceID
+			 * @param {String} resourceName
+			 * @param {String} id
+			 * @param {String} separator
+			 * @returns {String}
+			 */
+			getInstanceID : function(resourceName, id, separator) {
+				var result = [ this.app.name, 'instances', this.name,
+						resourceName, id ];
+				return result.join((separator) ? separator : '_');
+			},
+			/**
+			 * @method getResource
+			 * @param {String} resourceName
+			 * @returns {String} ClassID
+			 */
+			getResource : function(resourceName) {
+				if (this.resources[resourceName]) {
+					return this.resources[resourceName];
+				} else {
+					this.resources[resourceName] = this
+							.loadResource(resourceName);
+					return this.resources[resourceName];
+				}
+			},
+			/**
+			 * @protected
+			 * @method loadResource
+			 * @param {String} resourceName
+			 * @returns {String} ClassID
+			 */
+			loadResource : function(resourceName) {
 
-		var content = req.response.text.toString();
-		content = content.replace(/[\w\W]+?\n+?/,"");
-		content = "{\n"+content;//Para que no se rompa todo...
-		this._resources[resource] = this.initResource(resource,content);
-	},
-	getSourceAccessPath: function(resource,withUnderscore){
-		var result;
-		if(!withUnderscore){
-			result = this._app.Name+'.sources.'+this.Name+'.'+resource;
-		}else{
-			result = this._app.Name+'_sources_'+this.Name+'_'+resource;
-		}
-		return result;
-	},
-	getInstanceAccessPath: function(resource,withUnderscore){
-		var result;
-		if(!withUnderscore){
-			result = this._app.Name+'.instances.'+this.Name+'.'+resource;
-		}else{
-			result = this._app.Name+'_instances_'+this.Name+'_'+resource;
-		}
-		return result;
-	},
-	initResource : function(resource,content) {
-		
-		if(this._resources[resource]){
-			return this._resources[resource];
-		}
-		
-		var id = this.getSourceAccessPath(resource,true);
-    
-		var annotation = "\n//@ sourceURL=/"+this._getResourceUrl(resource)+"\n\n";
-		
-		if(false){
-			var script = annotation+"\n\nvar "+id+" = new Class("+content+")"+annotation;
-			var scriptElement = document.createElement('script');
-			scriptElement.type = 'text/javascript';
-			scriptElement.id = id;
-			scriptElement.text = script;
-			scriptElement.name = id;
-			document.head.appendChild(scriptElement);
-		}else{
-			var script = annotation+'new Class('+content+');'+annotation;
-		}
-		
-		window[id] = eval(script);
-		
-		return id;
-	},
-	get : function(resource, params) {
-		if (!this._resources[resource])
-			throw ('Unable to load unexist resource ' + resource);
-		//var response = new window[this._resources[resource]]();
-		//var scriptElement = '<script id="'+id+'" type="text/javascript">var '+id+' = new (new Class('+this._resources[resource]+'))();</script>';
-		//document.write(scriptElement);
-		var id = this.getInstanceAccessPath(resource,true)+'_'+String.uniqueID();
-		if(true){
-			window[id] = new window[this._resources[resource]](id);
-		}else{
-			window[id] = new Class(window[this._resources[resource]])(id);
-		}
-		
-		window[id].setContext({
-		  app: this._app,
-		  folder: this._getResourceUrl(resource,true),
-		  params: params,
-		  name: resource
+				var url = this.getResourcePath(resourceName, true);
+				var req = new Request({
+					url : url,
+					async : false,
+					evalResponse : false,
+					onFailure : function() {
+						throw ('Unable to load unexist resource ' + resource);
+					}
+				}).get();
+
+				var content = req.response.text.toString();
+				content = content.replace(/[\w\W]+?\n+?/, "");
+				content = "{\n" + content;// Para que no se rompa todo...
+
+				var classID = this.getClassID(resourceName, true);
+
+				var annotation = "\n//@ sourceURL=/"
+						+ this.getResourcePath(resourceName, true) + "\n\n";
+
+				var script = 'new Class(' + content + ');' + annotation;
+
+				try {
+					window[classID] = eval(script);
+				} catch (error) {
+					throw ('Unable to eval resource ' + resourceName);
+				}
+
+				return classID;
+			},
+			/**
+			 * @method get
+			 * @param {String} resourceName
+			 * @param {Object} params
+			 * @returns {Component} Instance of resource
+			 */
+			get : function(resourceName, params) {
+				var classID = this.getResource(resourceName);
+				// var response = new window[this._resources[resource]]();
+				// var scriptElement = '<script id="'+id+'"
+				// type="text/javascript">var
+				// '+id+' = new (new
+				// Class('+this._resources[resource]+'))();</script>';
+				// document.write(scriptElement);
+				var instanceID = this.getInstanceID(resourceName, String
+						.uniqueID(), '_');
+				if (true) {
+					window[instanceID] = new window[classID]();
+				} else {
+					window[instanceID] = new Class(window[classID])();
+				}
+
+				window[instanceID].setContext({
+					app : this.app,
+					id : instanceID,
+					folder : this.getResourcePath(resourceName, false),
+					name : this.getResourceFilename(resourceName, true),
+					params : params,
+				});
+				return window[instanceID];
+			}
 		});
-		return window[id];
-	}
-});
-var SingletonCatBag = new Class({
-	Extends : CatBag,
-	_instances : {},// Contendra el mapa de instancias
-	get : function(resource) {
-		if (!this._instances[resource]) {
-			if (!this._resources[resource])
-				throw ('Unable to load unexist resource ' + this.getSourceAccessPath(resource));
-			
-			var id = this.getInstanceAccessPath(resource,this._getResourceUrl(resource),true)+'_singleton';
-			
-			window[id] = new window[this._resources[resource]](id);
-			window[id].setContext({
-	      app: this._app,
-	      folder: this._getResourceUrl(resource,true),
-	      params: false,
-	      name: resource
-	    });
-			this._instances[resource] = id;
-		};
-		return window[this._instances[resource]];
-	}
-});
-var ViewsCatBag = new Class({
-	Extends : CatBag,
-	Name : 'Views',
-	_getResourceUrl : function(resource,onlyFolder) {
-		if(!onlyFolder){
-			return this._folder + resource + '/'+ resource + '_' + this.Name.slice(0,this.Name.length-1).toLowerCase() + '.jsclass';
-		}else{
-			return this._folder + resource + '/';
-		}
-	}
-});
-var ControllersCatBag = new Class({
-	Extends : SingletonCatBag,
-	Name : 'Controllers'
-});
-var ModelsCatBag = new Class({
-	Extends : CatBag,
-	Name : 'Models'
-});
-var ServicesCatBag = new Class({
-	Extends : SingletonCatBag,
-	Name : 'Services'
-});
-var PropertiesCatBag = new Class({
-	Extends : SingletonCatBag,
-	Name : 'Properties',
-	_getResourceUrl : function(filename) {
-		return this._folder + filename + '.json';
-	},
-	initResource : function(resource,content) {
-		return JSON.decode(content);
-	}
-});

@@ -8,17 +8,12 @@
 	src="libs/mootools-core-1.4.5-full-nocompat.js"></script>
 <script type="text/javascript" src="libs/mootools-more-1.4.0.1.js"></script>
 
-<script type="text/javascript" src="Core/Component.class.js"></script>
-<script type="text/javascript" src="Core/View.class.js"></script>
-<script type="text/javascript" src="Core/Controller.class.js"></script>
-<script type="text/javascript" src="Core/Service.class.js"></script>
-<script type="text/javascript" src="Core/Model.class.js"></script>
+<script type="text/javascript" src="Core/Application.class.js"></script>
 
-<script type="text/javascript" src="Core/CatBag.class.js"></script>
-<script type="text/javascript" src="Core/App.class.js"></script>
-
+</head>
+<body>
 <script type="text/javascript">
-	app = new App({
+	app = new Application({
 		name : 'demoApp',
 		resources : {// Lista de cosas a cargar
 			views : ['index'],
@@ -28,10 +23,7 @@
 			properties : ['default']
 		}
 	});
-	app.run();
+	app.start();
 </script>
-
-</head>
-<body>
 </body>
 </html>

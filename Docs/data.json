@@ -1,0 +1,1541 @@
+{
+    "project": {
+        "name": "RIAQuest",
+        "description": "RIAQuest JavaScript Framework",
+        "version": "0.1.0",
+        "url": "http://riaquest.com/"
+    },
+    "files": {
+        "Core/CatBags/ControllersCatBag.class.js": {
+            "name": "Core/CatBags/ControllersCatBag.class.js",
+            "modules": {},
+            "classes": {
+                "ControllersCatBag": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Core/CatBags/ModelsCatBag.class.js": {
+            "name": "Core/CatBags/ModelsCatBag.class.js",
+            "modules": {},
+            "classes": {
+                "ModelsCatBag": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Core/CatBags/OperationsCatBag.class.js": {
+            "name": "Core/CatBags/OperationsCatBag.class.js",
+            "modules": {},
+            "classes": {
+                "OperationsCatBag": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Core/CatBags/ServicesCatBag.class.js": {
+            "name": "Core/CatBags/ServicesCatBag.class.js",
+            "modules": {},
+            "classes": {
+                "ServicesCatBag": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Core/CatBags/ViewsCatBag.class.js": {
+            "name": "Core/CatBags/ViewsCatBag.class.js",
+            "modules": {},
+            "classes": {
+                "ViewsCatBag": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Core/Components/Controller.class.js": {
+            "name": "Core/Components/Controller.class.js",
+            "modules": {},
+            "classes": {
+                "Controller": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Core/Components/Model.class.js": {
+            "name": "Core/Components/Model.class.js",
+            "modules": {},
+            "classes": {
+                "Model": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Core/Components/Operation.class.js": {
+            "name": "Core/Components/Operation.class.js",
+            "modules": {},
+            "classes": {
+                "Operation": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Core/Components/Service.class.js": {
+            "name": "Core/Components/Service.class.js",
+            "modules": {},
+            "classes": {
+                "Service": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Core/Components/View.class.js": {
+            "name": "Core/Components/View.class.js",
+            "modules": {},
+            "classes": {
+                "View": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Core/Application.class.js": {
+            "name": "Core/Application.class.js",
+            "modules": {
+                "Core": 1
+            },
+            "classes": {
+                "Application": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Core/CatBag.class.js": {
+            "name": "Core/CatBag.class.js",
+            "modules": {},
+            "classes": {
+                "CatBag": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Core/Component.class.js": {
+            "name": "Core/Component.class.js",
+            "modules": {
+                "Components": 1
+            },
+            "classes": {
+                "Component": 1,
+                "ComponentContext": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Core/SingletonCatBag.class.js": {
+            "name": "Core/SingletonCatBag.class.js",
+            "modules": {
+                "CatBag": 1
+            },
+            "classes": {
+                "SingletonCatBag": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "CatBag": {
+            "name": "CatBag",
+            "submodules": {
+                "undefined": 1
+            },
+            "classes": {
+                "CatBag": 1,
+                "SingletonCatBag": 1,
+                "ControllersCatBag": 1,
+                "ModelsCatBag": 1,
+                "OperationsCatBag": 1,
+                "ServicesCatBag": 1,
+                "ViewsCatBag": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "Core/SingletonCatBag.class.js",
+            "line": 1
+        },
+        "Components": {
+            "name": "Components",
+            "submodules": {},
+            "classes": {
+                "Component": 1,
+                "Controller": 1,
+                "Model": 1,
+                "Operation": 1,
+                "Service": 1,
+                "View": 1,
+                "ComponentContext": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "Core/Component.class.js",
+            "line": 101
+        },
+        "Core": {
+            "name": "Core",
+            "submodules": {},
+            "classes": {
+                "Application": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "Core/Application.class.js",
+            "line": 1
+        }
+    },
+    "classes": {
+        "ControllersCatBag": {
+            "name": "ControllersCatBag",
+            "shortname": "ControllersCatBag",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "CatBag",
+            "file": "Core/CatBags/ControllersCatBag.class.js",
+            "line": 1,
+            "extends": "SingletonCatBag"
+        },
+        "ModelsCatBag": {
+            "name": "ModelsCatBag",
+            "shortname": "ModelsCatBag",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "CatBag",
+            "namespace": "",
+            "file": "Core/CatBags/ModelsCatBag.class.js",
+            "line": 1,
+            "extends": "CatBag"
+        },
+        "OperationsCatBag": {
+            "name": "OperationsCatBag",
+            "shortname": "OperationsCatBag",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "CatBag",
+            "namespace": "",
+            "file": "Core/CatBags/OperationsCatBag.class.js",
+            "line": 1,
+            "extends": "CatBag"
+        },
+        "ServicesCatBag": {
+            "name": "ServicesCatBag",
+            "shortname": "ServicesCatBag",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "CatBag",
+            "namespace": "",
+            "file": "Core/CatBags/ServicesCatBag.class.js",
+            "line": 1,
+            "extends": "SingletonCatBag"
+        },
+        "ViewsCatBag": {
+            "name": "ViewsCatBag",
+            "shortname": "ViewsCatBag",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "CatBag",
+            "namespace": "",
+            "file": "Core/CatBags/ViewsCatBag.class.js",
+            "line": 1,
+            "extends": "CatBag"
+        },
+        "Controller": {
+            "name": "Controller",
+            "shortname": "Controller",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Components",
+            "namespace": "",
+            "file": "Core/Components/Controller.class.js",
+            "line": 1,
+            "extends": "Component"
+        },
+        "Model": {
+            "name": "Model",
+            "shortname": "Model",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Components",
+            "namespace": "",
+            "file": "Core/Components/Model.class.js",
+            "line": 1,
+            "extends": "Component"
+        },
+        "Operation": {
+            "name": "Operation",
+            "shortname": "Operation",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Components",
+            "namespace": "",
+            "file": "Core/Components/Operation.class.js",
+            "line": 1,
+            "extends": "Component"
+        },
+        "Service": {
+            "name": "Service",
+            "shortname": "Service",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Components",
+            "namespace": "",
+            "file": "Core/Components/Service.class.js",
+            "line": 1,
+            "extends": "Component"
+        },
+        "View": {
+            "name": "View",
+            "shortname": "View",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Components",
+            "namespace": "",
+            "file": "Core/Components/View.class.js",
+            "line": 1,
+            "extends": "Component"
+        },
+        "Application": {
+            "name": "Application",
+            "shortname": "Application",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Core",
+            "namespace": "",
+            "file": "Core/Application.class.js",
+            "line": 1,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object"
+                }
+            ]
+        },
+        "CatBag": {
+            "name": "CatBag",
+            "shortname": "CatBag",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "CatBag",
+            "namespace": "",
+            "file": "Core/CatBag.class.js",
+            "line": 1,
+            "return": {
+                "description": "CatBag"
+            },
+            "is_constructor": 1
+        },
+        "Component": {
+            "name": "Component",
+            "shortname": "Component",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Components",
+            "namespace": "",
+            "file": "Core/Component.class.js",
+            "line": 1
+        },
+        "ComponentContext": {
+            "name": "ComponentContext",
+            "shortname": "ComponentContext",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Components",
+            "namespace": "",
+            "file": "Core/Component.class.js",
+            "line": 101
+        },
+        "SingletonCatBag": {
+            "name": "SingletonCatBag",
+            "shortname": "SingletonCatBag",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "CatBag",
+            "namespace": "",
+            "file": "Core/SingletonCatBag.class.js",
+            "line": 1,
+            "extends": "CatBag"
+        }
+    },
+    "classitems": [
+        {
+            "file": "Core/CatBags/ControllersCatBag.class.js",
+            "line": 8,
+            "itemtype": "property",
+            "name": "name",
+            "type": "String",
+            "default": "'controllers'",
+            "class": "ControllersCatBag",
+            "module": "CatBag"
+        },
+        {
+            "file": "Core/CatBags/ModelsCatBag.class.js",
+            "line": 8,
+            "itemtype": "property",
+            "name": "name",
+            "type": "String",
+            "default": "'models'",
+            "class": "ModelsCatBag",
+            "module": "CatBag"
+        },
+        {
+            "file": "Core/CatBags/OperationsCatBag.class.js",
+            "line": 8,
+            "itemtype": "property",
+            "name": "name",
+            "type": "String",
+            "default": "'operations'",
+            "class": "OperationsCatBag",
+            "module": "CatBag"
+        },
+        {
+            "file": "Core/CatBags/OperationsCatBag.class.js",
+            "line": 14,
+            "access": "protected",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "app",
+                    "description": "",
+                    "type": "Application"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "OperationsCatBag"
+            },
+            "class": "OperationsCatBag",
+            "module": "CatBag"
+        },
+        {
+            "file": "Core/CatBags/ServicesCatBag.class.js",
+            "line": 8,
+            "itemtype": "property",
+            "name": "name",
+            "type": "String",
+            "default": "'services'",
+            "class": "ServicesCatBag",
+            "module": "CatBag"
+        },
+        {
+            "file": "Core/CatBags/ViewsCatBag.class.js",
+            "line": 8,
+            "itemtype": "property",
+            "name": "name",
+            "type": "String",
+            "default": "'views'",
+            "class": "ViewsCatBag",
+            "module": "CatBag"
+        },
+        {
+            "file": "Core/CatBags/ViewsCatBag.class.js",
+            "line": 14,
+            "itemtype": "method",
+            "name": "getResourcePath",
+            "params": [
+                {
+                    "name": "resourceName",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "withExtension",
+                    "description": "",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "ViewsCatBag",
+            "module": "CatBag"
+        },
+        {
+            "file": "Core/Components/Operation.class.js",
+            "line": 8,
+            "itemtype": "property",
+            "name": "id",
+            "type": "String",
+            "default": "''",
+            "class": "Operation",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Components/Operation.class.js",
+            "line": 14,
+            "itemtype": "property",
+            "name": "ready",
+            "type": "[Boolean]*",
+            "default": "[]",
+            "class": "Operation",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Components/Operation.class.js",
+            "line": 20,
+            "itemtype": "property",
+            "name": "components",
+            "type": "[Components]*",
+            "default": "[]",
+            "class": "Operation",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Components/Operation.class.js",
+            "line": 26,
+            "itemtype": "method",
+            "name": "onSuccess",
+            "params": [
+                {
+                    "name": "response",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "Operation",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Components/Operation.class.js",
+            "line": 34,
+            "itemtype": "method",
+            "name": "onProgress",
+            "params": [
+                {
+                    "name": "response",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "Operation",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Components/Operation.class.js",
+            "line": 42,
+            "itemtype": "method",
+            "name": "onFailure",
+            "params": [
+                {
+                    "name": "response",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "Operation",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Components/Service.class.js",
+            "line": 8,
+            "propertie": "url",
+            "type": "String",
+            "default": "''",
+            "class": "Service",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Components/Service.class.js",
+            "line": 14,
+            "propertie": "method",
+            "type": "String",
+            "default": "'POST'",
+            "class": "Service",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Components/Service.class.js",
+            "line": 20,
+            "itemtype": "method",
+            "name": "hidrateModel",
+            "params": [
+                {
+                    "name": "model",
+                    "description": "",
+                    "type": "Model"
+                },
+                {
+                    "name": "response",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Model"
+            },
+            "class": "Service",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Components/Service.class.js",
+            "line": 30,
+            "access": "private",
+            "tagname": "",
+            "mrthod": "call",
+            "params": [
+                {
+                    "name": "operationID",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "params",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "Service",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Components/View.class.js",
+            "line": 8,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "appendView",
+            "params": [
+                {
+                    "name": "htmlOfView",
+                    "description": "",
+                    "type": "Element"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Element"
+            },
+            "class": "View",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Components/View.class.js",
+            "line": 22,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "getTheme",
+            "params": [
+                {
+                    "name": "htmlOfView",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Element"
+            },
+            "class": "View",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Components/View.class.js",
+            "line": 39,
+            "itemtype": "method",
+            "name": "render",
+            "params": [
+                {
+                    "name": "model",
+                    "description": "",
+                    "type": "Model"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "View",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 16,
+            "itemtype": "method",
+            "name": "initialize",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Application"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 39,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "includeScripts",
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 53,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "views",
+            "type": "{ViewsCatBag}",
+            "default": "undefined",
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 60,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "controllers",
+            "type": "{ControllersCatBag}",
+            "default": "undefined",
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 67,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "models",
+            "type": "{ModelsCatBag}",
+            "default": "undefined",
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 74,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "services",
+            "type": "{ServicesCatBag}",
+            "default": "undefined",
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 81,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "operations",
+            "type": "{OperationsCatBag}",
+            "default": "undefined",
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 88,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "store",
+            "type": "{Object}",
+            "default": "\"{}\"",
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 115,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_getName",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 123,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_getFolderPath",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 131,
+            "itemtype": "method",
+            "name": "getView",
+            "params": [
+                {
+                    "name": "viewName",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "params",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "View"
+            },
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 140,
+            "itemtype": "method",
+            "name": "getController",
+            "params": [
+                {
+                    "name": "controllerName",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Controller"
+            },
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 148,
+            "itemtype": "method",
+            "name": "getModel",
+            "params": [
+                {
+                    "name": "modelName",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "params",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Model"
+            },
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 157,
+            "itemtype": "method",
+            "name": "getService",
+            "params": [
+                {
+                    "name": "serviceName",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Service"
+            },
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 165,
+            "itemtype": "method",
+            "name": "getOperations",
+            "params": [
+                {
+                    "name": "operationID",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Operation"
+            },
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 173,
+            "itemtype": "method",
+            "name": "getStoreKey",
+            "params": [
+                {
+                    "name": "key",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 185,
+            "itemtype": "method",
+            "name": "setStoreKey",
+            "params": [
+                {
+                    "name": "key",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 199,
+            "itemtype": "method",
+            "name": "getCatBagFolderPath",
+            "params": [
+                {
+                    "name": "catBagName",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 207,
+            "itemtype": "method",
+            "name": "getCatBagResources",
+            "params": [
+                {
+                    "name": "catBagName",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Resources",
+                "type": "Array"
+            },
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 215,
+            "itemtype": "method",
+            "name": "executeController",
+            "params": [
+                {
+                    "name": "controllerName",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "params",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "OperationID"
+            },
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 225,
+            "itemtype": "method",
+            "name": "start",
+            "return": {
+                "description": "",
+                "type": "Application"
+            },
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/CatBag.class.js",
+            "line": 9,
+            "access": "protected",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "app",
+            "type": "Application",
+            "default": "undefined",
+            "class": "CatBag",
+            "module": "CatBag"
+        },
+        {
+            "file": "Core/CatBag.class.js",
+            "line": 16,
+            "access": "protected",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "resources",
+            "type": "[Component]*",
+            "default": "[]",
+            "class": "CatBag",
+            "module": "CatBag"
+        },
+        {
+            "file": "Core/CatBag.class.js",
+            "line": 23,
+            "access": "protected",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "app",
+                    "description": "",
+                    "type": "Application"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "CatBag"
+            },
+            "class": "CatBag",
+            "module": "CatBag"
+        },
+        {
+            "file": "Core/CatBag.class.js",
+            "line": 38,
+            "itemtype": "method",
+            "name": "getResourceFilename",
+            "params": [
+                {
+                    "name": "resourceName",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "withExtencion",
+                    "description": "",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "CatBag",
+            "module": "CatBag"
+        },
+        {
+            "file": "Core/CatBag.class.js",
+            "line": 52,
+            "itemtype": "method",
+            "name": "getResourcePath",
+            "params": [
+                {
+                    "name": "resourceName",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "withFilename",
+                    "description": "",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "CatBag",
+            "module": "CatBag"
+        },
+        {
+            "file": "Core/CatBag.class.js",
+            "line": 65,
+            "itemtype": "method",
+            "name": "getClassID",
+            "params": [
+                {
+                    "name": "resourceName",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "separator",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "CatBag",
+            "module": "CatBag"
+        },
+        {
+            "file": "Core/CatBag.class.js",
+            "line": 76,
+            "itemtype": "method",
+            "name": "getInstanceID",
+            "params": [
+                {
+                    "name": "resourceName",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "separator",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "CatBag",
+            "module": "CatBag"
+        },
+        {
+            "file": "Core/CatBag.class.js",
+            "line": 88,
+            "itemtype": "method",
+            "name": "getResource",
+            "params": [
+                {
+                    "name": "resourceName",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "ClassID",
+                "type": "String"
+            },
+            "class": "CatBag",
+            "module": "CatBag"
+        },
+        {
+            "file": "Core/CatBag.class.js",
+            "line": 102,
+            "access": "protected",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "loadResource",
+            "params": [
+                {
+                    "name": "resourceName",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "ClassID",
+                "type": "String"
+            },
+            "class": "CatBag",
+            "module": "CatBag"
+        },
+        {
+            "file": "Core/CatBag.class.js",
+            "line": 139,
+            "itemtype": "method",
+            "name": "get",
+            "params": [
+                {
+                    "name": "resourceName",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "params",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Instance of resource",
+                "type": "Component"
+            },
+            "class": "CatBag",
+            "module": "CatBag"
+        },
+        {
+            "file": "Core/Component.class.js",
+            "line": 7,
+            "access": "protected",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "app",
+            "type": "Application",
+            "default": "undefined",
+            "class": "Component",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Component.class.js",
+            "line": 16,
+            "itemtype": "method",
+            "name": "setContext",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "ComponentContext"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Component"
+            },
+            "class": "Component",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Component.class.js",
+            "line": 36,
+            "itemtype": "method",
+            "name": "getStoreKey",
+            "params": [
+                {
+                    "name": "key",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "Component",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Component.class.js",
+            "line": 44,
+            "itemtype": "method",
+            "name": "setStoreKey",
+            "params": [
+                {
+                    "name": "key",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "Component",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Component.class.js",
+            "line": 53,
+            "itemtype": "method",
+            "name": "onProgress",
+            "params": [
+                {
+                    "name": "response",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "operationID",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "Component",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Component.class.js",
+            "line": 62,
+            "itemtype": "method",
+            "name": "onProgress",
+            "params": [
+                {
+                    "name": "response",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "operationID",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "Component",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Component.class.js",
+            "line": 71,
+            "itemtype": "method",
+            "name": "onFailure",
+            "params": [
+                {
+                    "name": "response",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "operationID",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "Component",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Component.class.js",
+            "line": 80,
+            "itemtype": "method",
+            "name": "execute",
+            "params": [
+                {
+                    "name": "operationID",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "params",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "Component",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Component.class.js",
+            "line": 89,
+            "access": "protected",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "killMe",
+            "class": "Component",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Component.class.js",
+            "line": 105,
+            "itemtype": "config",
+            "name": "id",
+            "type": "{String}",
+            "class": "ComponentContext",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Component.class.js",
+            "line": 110,
+            "itemtype": "config",
+            "name": "folder",
+            "type": "{String}",
+            "class": "ComponentContext",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Component.class.js",
+            "line": 115,
+            "itemtype": "config",
+            "name": "params",
+            "type": "{Object}",
+            "class": "ComponentContext",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Component.class.js",
+            "line": 120,
+            "itemtype": "config",
+            "name": "app",
+            "type": "{Application}",
+            "class": "ComponentContext",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Component.class.js",
+            "line": 125,
+            "itemtype": "config",
+            "name": "name",
+            "type": "{String}",
+            "class": "ComponentContext",
+            "module": "Components"
+        },
+        {
+            "file": "Core/SingletonCatBag.class.js",
+            "line": 9,
+            "access": "protected",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "instances",
+            "type": "[Component]*",
+            "default": "[]",
+            "class": "SingletonCatBag",
+            "module": "CatBag"
+        },
+        {
+            "file": "Core/SingletonCatBag.class.js",
+            "line": 16,
+            "itemtype": "method",
+            "name": "get",
+            "params": [
+                {
+                    "name": "resourceName",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Component"
+            },
+            "class": "SingletonCatBag",
+            "module": "CatBag"
+        }
+    ]
+}

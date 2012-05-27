@@ -5,6 +5,6 @@ controller_index = {
 	},
 	execute: function(params){
 	  console.log('aca:',params);
-	  this._app.getView('index','Parametros');
+	  this.app.getView('index',params);
 	}
 }
