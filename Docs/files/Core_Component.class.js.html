@@ -139,6 +139,7 @@ var Component = new Class({
 	 * @method setContext
 	 * @param {ComponentContext} options
 	 * @returns {Component}
+	 * @chainable
 	 *&#x2F;
 	setContext : function(options) {
 		if (options.id)
@@ -173,12 +174,12 @@ var Component = new Class({
 		return this._app.setStoreKey(key, value);
 	},
 	&#x2F;**
-	 * @method onProgress
+	 * @method onSuccess
 	 * @param {Object} response
 	 * @param {String} operationID
 	 * @returns {Object}
 	 *&#x2F;
-	onProgress : function(response, operationID) {&#x2F;&#x2F;TODO Implenetar
+	onSuccess : function(response, operationID) {&#x2F;&#x2F;TODO Implenetar
 		return false;
 	},
 	&#x2F;**
@@ -204,6 +205,7 @@ var Component = new Class({
 	 * @param {String} operationID
 	 * @param {Object} params
 	 * @returns {Boolean}
+	 * @chainable
 	 *&#x2F;
 	execute : function(operationID, params) {&#x2F;&#x2F;TODO Implenetar
 		return false;

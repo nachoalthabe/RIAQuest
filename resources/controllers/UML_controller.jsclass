@@ -1,0 +1,15 @@
+UML_controller = {
+	Extends : Controller,
+	Require : {
+		service: [ 'yuml' ],
+		model: [ 'yuidoc_dataJson' ],
+		view: [ 'UML' ]
+	},
+	init : function() {
+
+	},
+	execute : function(params) {
+		console.log('aca:', params);
+		this.app.getView('UML', params);
+	}
+}

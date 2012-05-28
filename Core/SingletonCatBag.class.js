@@ -14,11 +14,11 @@ var SingletonCatBag = new Class(
 			 */
 			instances : {},
 			/**
-			 * @method get
+			 * @method getInstance
 			 * @param {String} resourceName
 			 * @returns {Component}
 			 */
-			get : function(resourceName) {
+			getInstance : function(resourceName) {
 				if (!this.instances[resourceName]) {
 					var classID = this.getResource(resourceName);
 

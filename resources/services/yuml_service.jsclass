@@ -1,0 +1,9 @@
+yuml_index = {
+  Extends: Service,
+  Require: {
+	  model: ['yuidoc_dataJson']
+  },
+  init: function(){
+    
+  }
+}

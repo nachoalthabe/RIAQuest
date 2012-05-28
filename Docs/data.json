@@ -177,7 +177,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "Core/Component.class.js",
-            "line": 101
+            "line": 103
         },
         "Core": {
             "name": "Core",
@@ -394,7 +394,7 @@
             "module": "Components",
             "namespace": "",
             "file": "Core/Component.class.js",
-            "line": 101
+            "line": 103
         },
         "SingletonCatBag": {
             "name": "SingletonCatBag",
@@ -720,7 +720,7 @@
         },
         {
             "file": "Core/Application.class.js",
-            "line": 16,
+            "line": 19,
             "itemtype": "method",
             "name": "initialize",
             "params": [
@@ -741,7 +741,17 @@
         },
         {
             "file": "Core/Application.class.js",
-            "line": 39,
+            "line": 35,
+            "itemtype": "method",
+            "name": "init",
+            "access": "private",
+            "tagname": "",
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 53,
             "access": "private",
             "tagname": "",
             "itemtype": "method",
@@ -751,79 +761,79 @@
         },
         {
             "file": "Core/Application.class.js",
-            "line": 53,
+            "line": 66,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
             "name": "views",
-            "type": "{ViewsCatBag}",
+            "type": "ViewsCatBag",
             "default": "undefined",
             "class": "Application",
             "module": "Core"
         },
         {
             "file": "Core/Application.class.js",
-            "line": 60,
+            "line": 73,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
             "name": "controllers",
-            "type": "{ControllersCatBag}",
+            "type": "ControllersCatBag",
             "default": "undefined",
             "class": "Application",
             "module": "Core"
         },
         {
             "file": "Core/Application.class.js",
-            "line": 67,
+            "line": 80,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
             "name": "models",
-            "type": "{ModelsCatBag}",
+            "type": "ModelsCatBag",
             "default": "undefined",
             "class": "Application",
             "module": "Core"
         },
         {
             "file": "Core/Application.class.js",
-            "line": 74,
+            "line": 87,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
             "name": "services",
-            "type": "{ServicesCatBag}",
+            "type": "ServicesCatBag",
             "default": "undefined",
             "class": "Application",
             "module": "Core"
         },
         {
             "file": "Core/Application.class.js",
-            "line": 81,
+            "line": 94,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
             "name": "operations",
-            "type": "{OperationsCatBag}",
+            "type": "OperationsCatBag",
             "default": "undefined",
             "class": "Application",
             "module": "Core"
         },
         {
             "file": "Core/Application.class.js",
-            "line": 88,
+            "line": 101,
             "access": "private",
             "tagname": "",
             "itemtype": "property",
             "name": "store",
-            "type": "{Object}",
+            "type": "Object",
             "default": "\"{}\"",
             "class": "Application",
             "module": "Core"
         },
         {
             "file": "Core/Application.class.js",
-            "line": 115,
+            "line": 128,
             "access": "private",
             "tagname": "",
             "itemtype": "method",
@@ -837,7 +847,7 @@
         },
         {
             "file": "Core/Application.class.js",
-            "line": 123,
+            "line": 136,
             "access": "private",
             "tagname": "",
             "itemtype": "method",
@@ -851,7 +861,7 @@
         },
         {
             "file": "Core/Application.class.js",
-            "line": 131,
+            "line": 144,
             "itemtype": "method",
             "name": "getView",
             "params": [
@@ -875,7 +885,7 @@
         },
         {
             "file": "Core/Application.class.js",
-            "line": 140,
+            "line": 153,
             "itemtype": "method",
             "name": "getController",
             "params": [
@@ -894,7 +904,7 @@
         },
         {
             "file": "Core/Application.class.js",
-            "line": 148,
+            "line": 161,
             "itemtype": "method",
             "name": "getModel",
             "params": [
@@ -918,7 +928,7 @@
         },
         {
             "file": "Core/Application.class.js",
-            "line": 157,
+            "line": 170,
             "itemtype": "method",
             "name": "getService",
             "params": [
@@ -937,7 +947,7 @@
         },
         {
             "file": "Core/Application.class.js",
-            "line": 165,
+            "line": 178,
             "itemtype": "method",
             "name": "getOperations",
             "params": [
@@ -956,7 +966,7 @@
         },
         {
             "file": "Core/Application.class.js",
-            "line": 173,
+            "line": 186,
             "itemtype": "method",
             "name": "getStoreKey",
             "params": [
@@ -975,7 +985,7 @@
         },
         {
             "file": "Core/Application.class.js",
-            "line": 185,
+            "line": 198,
             "itemtype": "method",
             "name": "setStoreKey",
             "params": [
@@ -999,7 +1009,7 @@
         },
         {
             "file": "Core/Application.class.js",
-            "line": 199,
+            "line": 212,
             "itemtype": "method",
             "name": "getCatBagFolderPath",
             "params": [
@@ -1018,7 +1028,7 @@
         },
         {
             "file": "Core/Application.class.js",
-            "line": 207,
+            "line": 220,
             "itemtype": "method",
             "name": "getCatBagResources",
             "params": [
@@ -1037,7 +1047,7 @@
         },
         {
             "file": "Core/Application.class.js",
-            "line": 215,
+            "line": 228,
             "itemtype": "method",
             "name": "executeController",
             "params": [
@@ -1061,13 +1071,139 @@
         },
         {
             "file": "Core/Application.class.js",
-            "line": 225,
+            "line": 238,
             "itemtype": "method",
             "name": "start",
             "return": {
                 "description": "",
                 "type": "Application"
             },
+            "chainable": 1,
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 248,
+            "itemtype": "method",
+            "name": "addResourceToLoad",
+            "params": [
+                {
+                    "name": "catBag",
+                    "description": "",
+                    "type": "CatBag"
+                },
+                {
+                    "name": "resourceName",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 259,
+            "itemtype": "method",
+            "name": "catBagOpen",
+            "params": [
+                {
+                    "name": "catBag",
+                    "description": "",
+                    "type": "CatBag"
+                }
+            ],
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 266,
+            "itemtype": "method",
+            "name": "catBagReopen",
+            "params": [
+                {
+                    "name": "catBag",
+                    "description": "",
+                    "type": "CatBag"
+                }
+            ],
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 273,
+            "itemtype": "method",
+            "name": "catBagClose",
+            "params": [
+                {
+                    "name": "catBag",
+                    "description": "",
+                    "type": "CatBag"
+                }
+            ],
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 284,
+            "access": "protected",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "loadResource",
+            "params": [
+                {
+                    "name": "resourceName",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "ClassID",
+                "type": "String"
+            },
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 306,
+            "itemtype": "method",
+            "name": "processDependencies",
+            "params": [
+                {
+                    "name": "requires",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "Application",
+            "module": "Core"
+        },
+        {
+            "file": "Core/Application.class.js",
+            "line": 325,
+            "itemtype": "method",
+            "name": "_loadResource",
+            "params": [
+                {
+                    "name": "response",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "resource",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
             "class": "Application",
             "module": "Core"
         },
@@ -1100,6 +1236,18 @@
             "line": 23,
             "access": "protected",
             "tagname": "",
+            "itemtype": "property",
+            "name": "resourcesToLoad",
+            "type": "Number",
+            "default": "0",
+            "class": "CatBag",
+            "module": "CatBag"
+        },
+        {
+            "file": "Core/CatBag.class.js",
+            "line": 30,
+            "access": "protected",
+            "tagname": "",
             "itemtype": "method",
             "name": "init",
             "params": [
@@ -1111,14 +1259,62 @@
             ],
             "return": {
                 "description": "",
-                "type": "CatBag"
+                "type": "Component"
+            },
+            "chainable": 1,
+            "class": "CatBag",
+            "module": "CatBag"
+        },
+        {
+            "file": "Core/CatBag.class.js",
+            "line": 47,
+            "itemtype": "method",
+            "name": "isReady",
+            "return": {
+                "description": "",
+                "type": "Boolean"
             },
             "class": "CatBag",
             "module": "CatBag"
         },
         {
             "file": "Core/CatBag.class.js",
-            "line": 38,
+            "line": 57,
+            "itemtype": "method",
+            "name": "addResourcesToLoad",
+            "params": [
+                {
+                    "name": "resourcesName",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "CatBag",
+            "module": "CatBag"
+        },
+        {
+            "file": "Core/CatBag.class.js",
+            "line": 69,
+            "itemtype": "method",
+            "name": "resourceLoaded",
+            "params": [
+                {
+                    "name": "resourceName",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "classID",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "CatBag",
+            "module": "CatBag"
+        },
+        {
+            "file": "Core/CatBag.class.js",
+            "line": 80,
             "itemtype": "method",
             "name": "getResourceFilename",
             "params": [
@@ -1142,7 +1338,7 @@
         },
         {
             "file": "Core/CatBag.class.js",
-            "line": 52,
+            "line": 94,
             "itemtype": "method",
             "name": "getResourcePath",
             "params": [
@@ -1166,7 +1362,7 @@
         },
         {
             "file": "Core/CatBag.class.js",
-            "line": 65,
+            "line": 107,
             "itemtype": "method",
             "name": "getClassID",
             "params": [
@@ -1190,7 +1386,7 @@
         },
         {
             "file": "Core/CatBag.class.js",
-            "line": 76,
+            "line": 118,
             "itemtype": "method",
             "name": "getInstanceID",
             "params": [
@@ -1219,7 +1415,7 @@
         },
         {
             "file": "Core/CatBag.class.js",
-            "line": 88,
+            "line": 130,
             "itemtype": "method",
             "name": "getResource",
             "params": [
@@ -1238,30 +1434,9 @@
         },
         {
             "file": "Core/CatBag.class.js",
-            "line": 102,
-            "access": "protected",
-            "tagname": "",
+            "line": 145,
             "itemtype": "method",
-            "name": "loadResource",
-            "params": [
-                {
-                    "name": "resourceName",
-                    "description": "",
-                    "type": "String"
-                }
-            ],
-            "return": {
-                "description": "ClassID",
-                "type": "String"
-            },
-            "class": "CatBag",
-            "module": "CatBag"
-        },
-        {
-            "file": "Core/CatBag.class.js",
-            "line": 139,
-            "itemtype": "method",
-            "name": "get",
+            "name": "getInstance",
             "params": [
                 {
                     "name": "resourceName",
@@ -1309,12 +1484,13 @@
                 "description": "",
                 "type": "Component"
             },
+            "chainable": 1,
             "class": "Component",
             "module": "Components"
         },
         {
             "file": "Core/Component.class.js",
-            "line": 36,
+            "line": 37,
             "itemtype": "method",
             "name": "getStoreKey",
             "params": [
@@ -1333,7 +1509,7 @@
         },
         {
             "file": "Core/Component.class.js",
-            "line": 44,
+            "line": 45,
             "itemtype": "method",
             "name": "setStoreKey",
             "params": [
@@ -1357,7 +1533,31 @@
         },
         {
             "file": "Core/Component.class.js",
-            "line": 53,
+            "line": 54,
+            "itemtype": "method",
+            "name": "onSuccess",
+            "params": [
+                {
+                    "name": "response",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "operationID",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "Component",
+            "module": "Components"
+        },
+        {
+            "file": "Core/Component.class.js",
+            "line": 63,
             "itemtype": "method",
             "name": "onProgress",
             "params": [
@@ -1381,31 +1581,7 @@
         },
         {
             "file": "Core/Component.class.js",
-            "line": 62,
-            "itemtype": "method",
-            "name": "onProgress",
-            "params": [
-                {
-                    "name": "response",
-                    "description": "",
-                    "type": "Object"
-                },
-                {
-                    "name": "operationID",
-                    "description": "",
-                    "type": "String"
-                }
-            ],
-            "return": {
-                "description": "",
-                "type": "Object"
-            },
-            "class": "Component",
-            "module": "Components"
-        },
-        {
-            "file": "Core/Component.class.js",
-            "line": 71,
+            "line": 72,
             "itemtype": "method",
             "name": "onFailure",
             "params": [
@@ -1429,7 +1605,7 @@
         },
         {
             "file": "Core/Component.class.js",
-            "line": 80,
+            "line": 81,
             "itemtype": "method",
             "name": "execute",
             "params": [
@@ -1448,12 +1624,13 @@
                 "description": "",
                 "type": "Boolean"
             },
+            "chainable": 1,
             "class": "Component",
             "module": "Components"
         },
         {
             "file": "Core/Component.class.js",
-            "line": 89,
+            "line": 91,
             "access": "protected",
             "tagname": "",
             "itemtype": "method",
@@ -1463,7 +1640,7 @@
         },
         {
             "file": "Core/Component.class.js",
-            "line": 105,
+            "line": 107,
             "itemtype": "config",
             "name": "id",
             "type": "{String}",
@@ -1472,7 +1649,7 @@
         },
         {
             "file": "Core/Component.class.js",
-            "line": 110,
+            "line": 112,
             "itemtype": "config",
             "name": "folder",
             "type": "{String}",
@@ -1481,7 +1658,7 @@
         },
         {
             "file": "Core/Component.class.js",
-            "line": 115,
+            "line": 117,
             "itemtype": "config",
             "name": "params",
             "type": "{Object}",
@@ -1490,7 +1667,7 @@
         },
         {
             "file": "Core/Component.class.js",
-            "line": 120,
+            "line": 122,
             "itemtype": "config",
             "name": "app",
             "type": "{Application}",
@@ -1499,7 +1676,7 @@
         },
         {
             "file": "Core/Component.class.js",
-            "line": 125,
+            "line": 127,
             "itemtype": "config",
             "name": "name",
             "type": "{String}",
@@ -1522,7 +1699,7 @@
             "file": "Core/SingletonCatBag.class.js",
             "line": 16,
             "itemtype": "method",
-            "name": "get",
+            "name": "getInstance",
             "params": [
                 {
                     "name": "resourceName",

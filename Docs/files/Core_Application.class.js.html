@@ -130,11 +130,14 @@
 var Application = new Class({
 	Implements : [ Options, Events ],
 	Binds : [ &#x27;_getName&#x27;, &#x27;_getFolderPath&#x27; ],
-	loadClass : [ &#x27;CatBag&#x27;, &#x27;Component&#x27;, &#x27;SingletonCatBag&#x27;,
+	classQueue : [ &#x27;CatBag&#x27;, &#x27;Component&#x27;, &#x27;SingletonCatBag&#x27;,
 			&#x27;CatBags&#x2F;ControllersCatBag&#x27;, &#x27;CatBags&#x2F;ModelsCatBag&#x27;,
 			&#x27;CatBags&#x2F;OperationsCatBag&#x27;, &#x27;CatBags&#x2F;ServicesCatBag&#x27;,
-			&#x27;CatBags&#x2F;ViewsCatBag&#x27;, &#x27;Components&#x2F;Controller&#x27;, &#x27;Components&#x2F;Model&#x27;, &#x27;Components&#x2F;Operation&#x27;, &#x27;Components&#x2F;Service&#x27;, &#x27;Components&#x2F;View&#x27; ],
-	loadedClass: 0,
+			&#x27;CatBags&#x2F;ViewsCatBag&#x27;, &#x27;Components&#x2F;Controller&#x27;, &#x27;Components&#x2F;Model&#x27;,
+			&#x27;Components&#x2F;Operation&#x27;, &#x27;Components&#x2F;Service&#x27;, &#x27;Components&#x2F;View&#x27; ],
+	classLoaded : 0,
+	resourceQueue : [],&#x2F;&#x2F;{catBag,resourceName}...
+	resourcesLoaded : 0,
 	&#x2F;**
 	 * @method initialize
 	 * @param {Object} options
@@ -144,73 +147,83 @@ var Application = new Class({
 	initialize : function(options) {
 		if (options)
 			this.setOptions(options);
-		this.includeScripts();
+		this.classToLoad = this.classQueue.length;
+		while (this.classQueue.length &gt; 0) {
+			this.includeScript();
+		}
 		this.__defineGetter__(&quot;name&quot;, this._getName);
 		this.__defineGetter__(&quot;folder&quot;, this._getFolderPath);
 	},
-	init: function(){
-		this.loadedClass++;
-		if(this.loadedClass &lt; this.loadClass.length)
+	&#x2F;**
+	 * @method init
+	 * @private
+	*&#x2F;
+	init : function() {
+		this.classToLoad--;
+		if (this.classToLoad &gt; 0)
 			return false;
 		this.views = new ViewsCatBag().init(this);
 		this.controllers = new ControllersCatBag().init(this);
 		this.models = new ModelsCatBag().init(this);
 		this.services = new ServicesCatBag().init(this);
 		this.operations = new OperationsCatBag().init(this);
+
+		while (this.resourceQueue.length &gt; 0) {
+			this.loadResource();
+		}
 	},
 	&#x2F;**
 	 * @private
 	 * @method includeScripts
 	 *&#x2F;
-	includeScripts : function() {
-		this.loadClass.each(function(el){
-			var script = document.createElement(&quot;script&quot;)
-			script.type = &quot;text&#x2F;javascript&quot;;
-			script.async = false;
-			script.src = &#x27;Core&#x2F;&#x27;+el+&#x27;.class.js&#x27;;
-			script.onload = this.init.bind(this);
-			document.head.appendChild(script);
-		}.bind(this))
+	includeScript : function() {
+		var toLoad = this.classQueue.shift();
+		var script = document.createElement(&quot;script&quot;)
+		script.type = &quot;text&#x2F;javascript&quot;;
+		script.src = &#x27;Core&#x2F;&#x27; + toLoad + &#x27;.class.js&#x27;;
+		script.async = false;
+		script.onload = this.init.bind(this);
+		document.head.appendChild(script);
 	},
 	&#x2F;**
 	* @private
 	* @property views
-	* @type {ViewsCatBag}
+	* @type ViewsCatBag
 	* @default undefined
 	*&#x2F;
 	views : undefined,
 	&#x2F;**
 	* @private
 	* @property controllers
-	* @type {ControllersCatBag}
+	* @type ControllersCatBag
 	* @default undefined
 	*&#x2F;
 	controllers : undefined,
 	&#x2F;**
 	* @private
 	* @property models
-	* @type {ModelsCatBag}
+	* @type ModelsCatBag
 	* @default undefined
 	*&#x2F;
 	models : undefined,
 	&#x2F;**
 	* @private
 	* @property services
-	* @type {ServicesCatBag}
+	* @type ServicesCatBag
 	* @default undefined
 	*&#x2F;
 	services : undefined,
 	&#x2F;**
 	* @private
 	* @property operations
-	* @type {OperationsCatBag}
+	* @type OperationsCatBag
 	* @default undefined
 	*&#x2F;
 	operations : undefined,
 	&#x2F;**
 	* @private
 	* @property store
-	* @type {Object}
+	* @type Object
 	* @default &quot;{}&quot;
 	*&#x2F;
 	store : {},
@@ -257,7 +270,7 @@ var Application = new Class({
 	 * @return {View}
 	 *&#x2F;
 	getView : function(viewName, params) {
-		return this.views.get(viewName, params);
+		return this.views.getInstance(viewName, params);
 	},
 	&#x2F;**
 	 * @method getController
@@ -265,7 +278,7 @@ var Application = new Class({
 	 * @return {Controller}
 	 *&#x2F;
 	getController : function(controllerName) {
-		return this.controllers.get(controllerName);
+		return this.controllers.getInstance(controllerName);
 	},
 	&#x2F;**
 	 * @method getModel
@@ -274,7 +287,7 @@ var Application = new Class({
 	 * @return {Model}
 	 *&#x2F;
 	getModel : function(modelName, params) {
-		return this.models.get(modelName, params);
+		return this.models.getInstance(modelName, params);
 	},
 	&#x2F;**
 	 * @method getService
@@ -282,7 +295,7 @@ var Application = new Class({
 	 * @return {Service}
 	 *&#x2F;
 	getService : function(serviceName) {
-		return this.services.get(serviceName);
+		return this.services.getInstance(serviceName);
 	},
 	&#x2F;**
 	 * @method getOperations
@@ -290,7 +303,7 @@ var Application = new Class({
 	 * @return {Operation}
 	 *&#x2F;
 	getOperations : function(operationID) {
-		return this.operations.get(operationID);
+		return this.operations.getInstance(operationID);
 	},
 	&#x2F;**
 	 * @method getStoreKey
@@ -342,16 +355,129 @@ var Application = new Class({
 	 *&#x2F;
 	executeController : function(controllerName, params) {
 		var controller = this.getController(controllerName);
-		controller[&#x27;execute&#x27;].apply(controller, [ params ]);
+		controller.execute(params);
 	},
 	&#x2F;**
 	 * @method start
 	 * @return {Application}
+	 * @chainable
 	 *&#x2F;
 	start : function() {
 		if (this.options.init.controller != &#x27;&#x27;)
 			this.executeController(this.options.init.controller,
 					this.options.init.arguments);
+	},
+	&#x2F;**
+	 * @method addResourceToLoad
+	 * @param {CatBag} catBag
+	 * @param {String} resourceName
+	 *&#x2F;
+	addResourceToLoad : function(catBag, resourceName) {
+		this.resourceQueue.push({
+			&#x27;catBag&#x27; : catBag,
+			&#x27;resourceName&#x27; : resourceName
+		});
+	},
+	&#x2F;**
+	 * @method catBagOpen
+	 * @param {CatBag} catBag
+	 *&#x2F;
+	catBagOpen : function(catBag) {
+		console.log(&#x27;Arranca&#x27;, catBag.name);
+	},
+	&#x2F;**
+	 * @method catBagReopen
+	 * @param {CatBag} catBag
+	 *&#x2F;
+	catBagReopen : function(catBag) {
+		console.log(&#x27;Rearranca&#x27;, catBag.name);
+	},
+	&#x2F;**
+	 * @method catBagClose
+	 * @param {CatBag} catBag
+	 *&#x2F;
+	catBagClose : function(catBag) {
+		console.log(&#x27;Cierra&#x27;, catBag.name);
+		if (this.services.isReady() &amp;&amp; this.models.isReady()
+				&amp;&amp; this.controllers.isReady() &amp;&amp; this.views.isReady()) {
+			this.start();
+		}
+	},
+	&#x2F;**
+	 * @protected
+	 * @method loadResource
+	 * @param {String} resourceName
+	 * @returns {String} ClassID
+	 *&#x2F;
+	loadResource : function() {
+		var resource = this.resourceQueue.pop();
+		resource.path = resource.catBag.getResourcePath(resource.resourceName, true);
+		resource.classID = resource.catBag.getClassID(resource.resourceName, &#x27;_&#x27;)
+		var req = new Request({
+			url : resource.path,
+			async : false,
+			evalResponse : false,
+			onFailure : function() {
+				throw (&#x27;Unable to load unexist resource &#x27; + resource);
+			},
+			onSuccess: function(response){
+				this._loadResource(response,resource);
+			}.bind(this)
+		}).get();
+	},
+	&#x2F;**
+	 * @method processDependencies
+	 * @param {Object} requires
+	 * @private
+	 *&#x2F;
+	processDependencies: function(requires){
+		if(requires.model){
+			this.models.addResourcesToLoad(requires.model);
+		}
+		if(requires.controller){
+			this.controllers.addResourcesToLoad(requires.controller);
+		}
+		if(requires.view){
+			this.views.addResourcesToLoad(requires.view);
+		}
+		if(requires.service){
+			this.services.addResourcesToLoad(requires.service);
+		}
+	},
+	&#x2F;**
+	 * @method _loadResource
+	 * @param {String} response
+	 * @param {Object} resource
+	 * @private
+	 *&#x2F;
+	_loadResource: function(response,resource){
+		var content = response.toString();
+		content = content.replace(&#x2F;[\w\W]+?\n+?&#x2F;, &quot;&quot;);
+		content = resource.classID+&quot;={\n&quot; + content;&#x2F;&#x2F; Para que no se rompa todo...
+
+		var annotation = &quot;\n\n&#x2F;&#x2F;@ sourceURL=&#x2F;&quot; + resource.path + &quot;\n\n&quot;;
+		var script = &#x27;&#x27;;
+		if (true) {
+			script = content + annotation;
+			try {
+				var object = eval(script);
+			} catch (error) {
+				throw (&#x27;Unable to eval resource &#x27; + resource.path);
+			}
+			if(object.Require){
+				this.processDependencies(object.Require);
+			}
+			window[resource.classID] = new Class(object);
+		} else {
+			script = &#x27;new Class(&#x27; + content + &#x27;);&#x27; + annotation;
+
+			try {
+				window[classID] = eval(script);
+			} catch (error) {
+				throw (&#x27;Unable to eval resource &#x27; + resourcePath);
+			}
+		}
+		resource.catBag.resourceLoaded(resource.resourceName, resource.classID);
 	}
 });
     </pre>

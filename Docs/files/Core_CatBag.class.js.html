@@ -134,28 +134,70 @@ var CatBag = new Class(
 			 * @type Application
 			 * @default undefined
 			 *&#x2F;
-			app: undefined,
+			app : undefined,
 			&#x2F;**
 			 * @protected
 			 * @property resources
 			 * @type [Component]*
 			 * @default []
 			 *&#x2F;
-			resources: [],
+			resources : [],
+			&#x2F;**
+			 * @protected
+			 * @property resourcesToLoad
+			 * @type Number
+			 * @default 0
+			 *&#x2F;
+			resourcesToLoad : 0,
 			&#x2F;**
 			 * @protected
 			 * @method init
 			 * @param {Application} app
-			 * @returns {CatBag}
+			 * @returns {Component}
+			 * @chainable
 			 *&#x2F;
 			init : function(app) {
 				this.app = app;
 				this.folder = this.app.getCatBagFolderPath(this.name);
 				var toLoad = this.app.getCatBagResources(this.name);
-				while (toLoad.length &gt; 0) {
-					this.getResource(toLoad.pop());
+				if (toLoad.length &gt; 0) {
+					this.app.catBagOpen(this);
+					this.addResourcesToLoad(toLoad);
 				}
 				return this;
+			},
+			&#x2F;**
+			 * @method isReady
+			 * @returns {Boolean}
+			 *&#x2F;
+			isReady : function() {
+				if (this.resourcesToLoad == 0)
+					return true
+				else
+					return false
+			},
+			&#x2F;**
+			 * @method addResourcesToLoad
+			 * @param {String} resourcesName
+			 *&#x2F;
+			addResourcesToLoad : function(resourcesName) {
+				resourcesName.each(function(elem){
+					if (this.resources[elem] == undefined) {
+						this.app.addResourceToLoad(this, elem);
+						this.resourcesToLoad++;
+					}
+				}.bind(this))
+			},
+			&#x2F;**
+			 * @method resourceLoaded
+			 * @param {String} resourceName
+			 * @param {String} classID
+			 *&#x2F;
+			resourceLoaded : function(resourceName, classID) {
+				this.resources[resourceName] = classID;
+				if (--this.resourcesToLoad == 0) {
+					this.app.catBagClose(this);
+				}
 			},
 			&#x2F;**
 			 * @method getResourceFilename
@@ -216,55 +258,19 @@ var CatBag = new Class(
 				if (this.resources[resourceName]) {
 					return this.resources[resourceName];
 				} else {
-					this.resources[resourceName] = this
-							.loadResource(resourceName);
+					this.resources[resourceName] = this.app.loadResource(this
+							.getResourcePath(resourceName, true), this
+							.getClassID(resourceName, &#x27;_&#x27;));
 					return this.resources[resourceName];
 				}
 			},
 			&#x2F;**
-			 * @protected
-			 * @method loadResource
-			 * @param {String} resourceName
-			 * @returns {String} ClassID
-			 *&#x2F;
-			loadResource : function(resourceName) {
-
-				var url = this.getResourcePath(resourceName, true);
-				var req = new Request({
-					url : url,
-					async : false,
-					evalResponse : false,
-					onFailure : function() {
-						throw (&#x27;Unable to load unexist resource &#x27; + resource);
-					}
-				}).get();
-
-				var content = req.response.text.toString();
-				content = content.replace(&#x2F;[\w\W]+?\n+?&#x2F;, &quot;&quot;);
-				content = &quot;{\n&quot; + content;&#x2F;&#x2F; Para que no se rompa todo...
-
-				var classID = this.getClassID(resourceName, true);
-
-				var annotation = &quot;\n&#x2F;&#x2F;@ sourceURL=&#x2F;&quot;
-						+ this.getResourcePath(resourceName, true) + &quot;\n\n&quot;;
-
-				var script = &#x27;new Class(&#x27; + content + &#x27;);&#x27; + annotation;
-
-				try {
-					window[classID] = eval(script);
-				} catch (error) {
-					throw (&#x27;Unable to eval resource &#x27; + resourceName);
-				}
-
-				return classID;
-			},
-			&#x2F;**
-			 * @method get
+			 * @method getInstance
 			 * @param {String} resourceName
 			 * @param {Object} params
 			 * @returns {Component} Instance of resource
 			 *&#x2F;
-			get : function(resourceName, params) {
+			getInstance : function(resourceName, params) {
 				var classID = this.getResource(resourceName);
 				&#x2F;&#x2F; var response = new window[this._resources[resource]]();
 				&#x2F;&#x2F; var scriptElement = &#x27;&lt;script id=&quot;&#x27;+id+&#x27;&quot;
