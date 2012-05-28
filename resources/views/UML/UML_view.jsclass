@@ -4,9 +4,7 @@ view_index = {
     console.log('View',this.options);
     var theme = this.getTheme('theme1');
     var vars= {
-    		texto1: new Element('strong',{
-    			text: 'Nada'
-    		}),
+    		texto1: 'Nada',
     		texto2: 'Otra'
     }
     this.appendView(theme.substitute(vars));

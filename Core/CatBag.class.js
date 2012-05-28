@@ -10,7 +10,7 @@ var CatBag = new Class(
 			 * @protected
 			 * @property app
 			 * @type Application
-			 * @default undefined
+			 * @default false
 			 */
 			app : undefined,
 			/**

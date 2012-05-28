@@ -2,7 +2,31 @@
  * @class Application
  * @module Core
  * @constructor
- * @param {Object} options
+ * @required
+ * @param {Object} [options]
+ * @required
+ * @param {String} [options.name]
+ * @required
+ * @param {Object} [options.folders]
+ * @param {String} [options.folders.base]
+ * @param {String} [options.folders.views]
+ * @param {String} [options.folders.controllers]
+ * @param {String} [options.folders.models]
+ * @param {String} [options.folders.services]
+ * @param {Object} [options.resources]
+ * @param {String} [options.resources.views]
+ * @param {String} [options.resources.controllers]
+ * @param {String} [options.resources.models]
+ * @param {String} [options.resources.services]
+ * @param {Object} [options.init]
+ * @param {String} [options.init.controller]
+ * @param {Object} [options.init.arguments]
+ * 
+ * @uses ControllersCatBag 
+ * @uses ModelsCatBag
+ * @uses OperationsCatBag
+ * @uses ServicesCatBag
+ * @uses ViewsCatBag
 */
 
 var Application = new Class({
@@ -14,7 +38,7 @@ var Application = new Class({
 			'CatBags/ViewsCatBag', 'Components/Controller', 'Components/Model',
 			'Components/Operation', 'Components/Service', 'Components/View' ],
 	classLoaded : 0,
-	resourceQueue : [],//{catBag,resourceName}...
+	resourceQueue : [],
 	resourcesLoaded : 0,
 	/**
 	 * @method initialize
@@ -29,11 +53,12 @@ var Application = new Class({
 		while (this.classQueue.length > 0) {
 			this.includeScript();
 		}
-		this.__defineGetter__("name", this._getName);
-		this.__defineGetter__("folder", this._getFolderPath);
+		this.name = this.options.name;
+		this.folder = this.options.folders.base;
 	},
 	/**
 	 * @method init
+	 * @async
 	 * @private
 	*/
 	init : function() {
@@ -80,7 +105,7 @@ var Application = new Class({
 	/**
 	* @private
 	* @property models
-	* @type ModelsCatBag
+	* @type [ModelsCatBag]*
 	* @default undefined
 	*/
 	models : undefined,
@@ -105,48 +130,11 @@ var Application = new Class({
 	* @default "{}"
 	*/
 	store : {},
-	options : {
-		name : 'Application',
-		folders : {
-			base : 'resources/',
-			views : 'views/',
-			controllers : 'controllers/',
-			models : 'models/',
-			services : 'services/'
-		},
-		resources : {
-			views : [],
-			controllers : [],
-			models : [],
-			services : []
-		},
-		init : {
-			controller : '',
-			arguments : {}
-		}
-	},
 	/**
-	 * @private
-	 * @method _getName
-	 * @return {String}
-	 */
-	_getName : function() {
-		return this.options.name;
-	},
-	/**
-	 * @private
-	 * @method _getFolderPath
-	 * @return {String}
-	 */
-	_getFolderPath : function() {
-		return this.options.folders.base;
-	},
-	/**
-	 * @method getView
-	 * @param {String} viewName
-	 * @param {Object} params
-	 * @return {View}
-	 */
+	* @property options
+	* @type Object
+	*/
+	options : {},
 	getView : function(viewName, params) {
 		return this.views.getInstance(viewName, params);
 	},

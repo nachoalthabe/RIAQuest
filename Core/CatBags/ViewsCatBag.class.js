@@ -18,9 +18,9 @@ ViewsCatBag = new Class({
 	 * @returns {String}
 	 */
 	getResourcePath : function(resourceName, withExtension) {
-		var response = this.folder + resourceName + '/' + resourceName + '_' + this.name.slice(0,this.name.length-1);
+		var response = this.folder + resourceName + '/';
 		if (withExtension) {
-			response += '.jsclass';
+			response += this.getResourceFilename(resourceName,true);
 		}
 		return response;
 	}
