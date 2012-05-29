@@ -139,7 +139,6 @@ var CatBag = new Class(
 					this.resources[resourceName] = this.app.loadResource(this
 							.getResourcePath(resourceName, true), this
 							.getClassID(resourceName, '_'));
-					return this.resources[resourceName];
 				}
 			},
 			/**

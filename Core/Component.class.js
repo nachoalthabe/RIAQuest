@@ -40,7 +40,7 @@ var Component = new Class({
 	  * @returns {Object}
 	  */
 	getStoreKey : function(key) {
-		return this._app.getStoreKey(key);
+		return this.app.getStoreKey(key);
 	},
 	/**
 	 * @method setStoreKey
@@ -49,7 +49,7 @@ var Component = new Class({
 	 * @returns {Object}
 	 */
 	setStoreKey : function(key, value) {
-		return this._app.setStoreKey(key, value);
+		return this.app.setStoreKey(key, value);
 	},
 	/**
 	 * @method onSuccess
