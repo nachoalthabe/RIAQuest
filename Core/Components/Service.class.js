@@ -24,7 +24,7 @@ var Service = new Class({
    * @returns {Model}
    */
   hidrateModel: function(model,response){
-    var model = this._app.getModel(model,response);
+    var model = this.app.getModel(model,response);
     return model;
   },
   /**

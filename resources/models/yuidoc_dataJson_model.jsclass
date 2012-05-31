@@ -1,6 +1,22 @@
 model_index = {
   Extends: Model,
   init: function(){
-    
+  },
+  getClasses: function(){
+	 return this.options.classes
+  },
+  getClassesTree: function(){
+	  var clases = this.getClasses();
+	  var resultado = this.getClassTreeLevel("", clases)
+  },
+  /**
+   * @method getClassTreeLevel
+   * @private
+   * @param {String} extendFrom
+   * @param {Object} setOfChilds
+   * @return {Object}
+   */
+  getClassTreeLevel: function(extendFrom,setOfChilds){
+	  
   }
 }

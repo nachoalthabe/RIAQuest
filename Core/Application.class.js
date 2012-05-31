@@ -134,7 +134,26 @@ var Application = new Class({
 	* @property options
 	* @type Object
 	*/
-	options : {},
+	options : {
+		name : 'Application',
+		folders : {
+			base : 'resources/',
+			views : 'views/',
+			controllers : 'controllers/',
+			models : 'models/',
+			services : 'services/'
+		},
+		resources : {
+			views : [],
+			controllers : [],
+			models : [],
+			services : []
+		},
+		init : {
+			controller : '',
+			arguments : {}
+		}
+	},
 	getView : function(viewName, params) {
 		return this.views.getInstance(viewName, params);
 	},

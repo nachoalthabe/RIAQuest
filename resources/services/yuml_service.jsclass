@@ -1,9 +1,21 @@
 yuml_index = {
-  Extends: Service,
-  Require: {
-	  model: ['yuidoc_dataJson']
-  },
-  init: function(){
-    
-  }
+	Extends : Service,
+	Require : {
+		model : [ 'yuidoc_dataJson' ]
+	},
+	url : '/Docs/data.json',
+	init : function() {
+		var jsonRequest = new Request.JSON({
+			url : this.url,
+			async: false,
+			onSuccess: function(response){
+				this.setStoreKey('json',response);
+			}.bind(this)
+		}).get();
+	},
+	get : function() {
+		var json = this.getStoreKey('json');
+		var model = this.hidrateModel('yuidoc_dataJson',json);
+		return model;
+	}
 }

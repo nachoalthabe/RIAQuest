@@ -10,6 +10,9 @@ UML_controller = {
 	},
 	execute : function(params) {
 		console.log('aca:', params);
-		this.app.getView('UML', params);
+		var service = this.app.getService('yuml');
+		var json = service.get();
+		console.log(json);
+		var view = this.app.getView('UML', params);
 	}
 }
