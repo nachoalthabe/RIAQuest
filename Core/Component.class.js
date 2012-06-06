@@ -11,6 +11,12 @@ var Component = new Class({
 	 * @default undefined
 	 */
 	app : undefined,
+	resources: {
+		'view': [],
+		'controller': [],
+		'service': [],
+		'model': [],
+	},
 	initialize : function() {
 	},
 	/**
@@ -97,7 +103,127 @@ var Component = new Class({
 			this.container.destroy()
 		}
 		delete window[this.id];
-	}
+	},
+	/**
+	 * @method _getResource
+	 * @private
+	 * @param {String}
+	 *          type ('view'|'component'|'service'|'model')
+	 * @param {String}
+	 *          resourceName
+	 * @param {Object}
+	 *          params
+	 * @return {Component}
+	 */
+	_getResource : function(type, resourceName, params) {
+		if (!this.resources[type][resourceName]) {
+			var instance = false;
+			switch (type) {
+			case 'view':
+				instance = this.app.getView(resourceName,params);
+				break;
+			case 'controller':
+				instance = this.app.getController(resourceName,params);
+				break;
+			case 'service':
+				instance = this.app.getService(resourceName,params);
+				break;
+			case 'model':
+				instance = this.app.getModel(resourceName,params);
+				break;
+			default:
+				throw("Type only can be ('view'|'component'|'service'|'model'):",type);
+				break;
+			}
+			this.resources[type][resourceName] = instance;
+		}
+		return this.resources[type][resourceName];
+	},
+	/**
+	 * @method _delResource
+	 * @private
+	 * @param {String}
+	 *          type ('view'|'component'|'service'|'model')
+	 * @param {String}
+	 *          resourceName
+	 * @return {Boolean} Can delete
+	 */
+	_delResource : function(type, resourceName) {
+		if (this.resources[type][viewName]) {
+			delete this.resources[type][viewName];
+			return true;
+		} else {
+			return false;
+		}
+	},
+	/**
+	 * @method getView
+	 * @param {String}
+	 *          viewName
+	 * @return {View}
+	 */
+	getView : function(viewName, params) {
+		return this._getResource('view', viewName, params);
+	},
+	/**
+	 * @method delView
+	 * @param {String}
+	 *          viewName
+	 * @return {View}
+	 */
+	delView : function(viewName) {
+		return this._delResource('view', viewName);
+	},
+	/**
+	 * @method getController
+	 * @param {String}
+	 *          controllerName
+	 * @return {Controller}
+	 */
+	getController : function(controllerName,params) {
+		return this._getResource('controller', controllerName, params);
+	},
+	/**
+	 * @method delController
+	 * @param {String} controllerName
+	 * @return {Controller}
+	 */
+	delController : function(controllerName) {
+		return this._delResource('controller', controllerName);
+	},
+	/**
+	 * @method getModel
+	 * @param {String} modelName
+	 * @param {Object} params
+	 * @return {Model}
+	 */
+	getModel : function(modelName, params) {
+		return this._getResource('model', modelName, params);
+	},
+	/**
+	 * @method delModel
+	 * @param {String} modelName
+	 * @return {Model}
+	 */
+	delModel : function(modelName) {
+		return this._delResource('model', modelName);
+	},
+	/**
+	 * @method getService
+	 * @param {String} serviceName
+	 * @return {Service}
+	 */
+	getService : function(serviceName,params) {
+		return this._getResource('service', serviceName, params);
+	},
+	/**
+	 * @method delService
+	 * @param {String} serviceName
+	 * @return {Service}
+	 */
+	delService : function(serviceName) {
+		return this._delResource('service', serviceName);
+	},
 });
 
 /**

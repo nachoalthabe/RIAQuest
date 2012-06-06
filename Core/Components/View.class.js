@@ -11,11 +11,11 @@ var View = new Class({
    * @param {Element} htmlOfView
    * @returns {Element}
    */
-  appendView: function(htmlOfView){
-  	this.container = new Element('div',{
+  appendView: function(htmlOfView,params){
+  	this.container = new Element('div',Object.merge((!params)?{}:params,{
   		id: this.id,
   		html: htmlOfView
-  	});
+  	}));
   	this.container.inject(document.body);
   	return this.container;
   },

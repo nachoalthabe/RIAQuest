@@ -176,6 +176,12 @@ var Application = new Class(
           arguments: {}
         }
       },
+      /**
+       * @method getView
+       * @param {String}
+       *          viewName
+       * @return {View}
+       */
       getView: function(viewName,params){
         return this.views.getInstance(viewName,params);
       },
