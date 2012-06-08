@@ -116,7 +116,7 @@ var Component = new Class({
 	 * @return {Component}
 	 */
 	_getResource : function(type, resourceName, params) {
-		if (!this.resources[type][resourceName]) {
+		
 			var instance = false;
 			switch (type) {
 			case 'view':
@@ -135,9 +135,7 @@ var Component = new Class({
 				throw("Type only can be ('view'|'component'|'service'|'model'):",type);
 				break;
 			}
-			this.resources[type][resourceName] = instance;
-		}
-		return this.resources[type][resourceName];
+		return instance;
 	},
 	/**
 	 * @method _delResource
