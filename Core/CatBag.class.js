@@ -63,6 +63,7 @@ var CatBag = new Class(
 					if (this.resources[elem] == undefined) {
 						this.app.addResourceToLoad(this, elem);
 						this.resourcesToLoad++;
+						this.app.loadResource();
 					}
 				}.bind(this))
 			},
