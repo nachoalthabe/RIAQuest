@@ -11,12 +11,6 @@ var Component = new Class({
 	 * @default undefined
 	 */
 	app : undefined,
-	resources: {
-		'view': [],
-		'controller': [],
-		'service': [],
-		'model': [],
-	},
 	initialize : function() {
 	},
 	/**
@@ -46,7 +40,7 @@ var Component = new Class({
 	  * @returns {Object}
 	  */
 	getStoreKey : function(key) {
-		return this.app.getStoreKey(key);
+		return this.app.getStoreKey(this.id+'_'+key);
 	},
 	/**
 	 * @method setStoreKey
@@ -55,7 +49,7 @@ var Component = new Class({
 	 * @returns {Object}
 	 */
 	setStoreKey : function(key, value) {
-		return this.app.setStoreKey(key, value);
+		return this.app.setStoreKey(this.id+'_'+key, value);
 	},
 	/**
 	 * @method onSuccess
@@ -85,105 +79,24 @@ var Component = new Class({
 		return false;
 	},
 	/**
-	 * @public
-	 * @method destroy
-	 */
-	destroy : function() {
-		this._destroy();
-	},
-	/**
-	 * @provate
-	 * @method _destroy
-	 */
-	_destroy: function() {
-		delete window[this.getID()];
-	},
-	/**
-	 * @method _getResource
-	 * @private
-	 * @param {String}
-	 *          type ('view'|'component'|'service'|'model')
-	 * @param {String}
-	 *          resourceName
-	 * @param {Object}
-	 *          params
-	 * @return {Component}
-	 */
-	_getResource : function(type, resourceName, params) {
-		
-			var instance = false;
-			switch (type) {
-			case 'view':
-				instance = this.app.getView(resourceName,params);
-				break;
-			case 'controller':
-				instance = this.app.getController(resourceName,params);
-				break;
-			case 'service':
-				instance = this.app.getService(resourceName,params);
-				break;
-			case 'model':
-				instance = this.app.getModel(resourceName,params);
-				break;
-			default:
-				throw("Type only can be ('view'|'component'|'service'|'model'):",type);
-				break;
-			}
-		return instance;
-	},
-	/**
-	 * @method getID
-	 * @return {String} InstanceID
-	 */
-	getID: function(){
-		return this.id;
-	},
-	/**
-	 * @method getView
-	 * @param {String}
-	 *          viewName
-	 * @return {View}
-	 */
-	getView : function(viewName, params) {
-		return this._getResource('view', viewName, params);
-	},
-	/**
-	 * @method getController
-	 * @param {String}
-	 *          controllerName
-	 * @return {Controller}
-	 */
-	getController : function(controllerName,params) {
-		return this._getResource('controller', controllerName, params);
-	},
-	/**
-	 * @method getModel
-	 * @param {String} modelName
+	 * @method execute
+	 * @param {String} operationID
 	 * @param {Object} params
-	 * @return {Model}
+	 * @returns {Boolean}
+	 * @chainable
 	 */
-	getModel : function(modelName, params) {
-		return this._getResource('model', modelName, params);
+	execute : function(operationID, params) {//TODO Implenetar
+		return false;
 	},
 	/**
-	 * @method getService
-	 * @param {String} serviceName
-	 * @return {Service}
+	 * @protected
+	 * @method killMe
 	 */
-	getService : function(serviceName,params) {
-		return this._getResource('service', serviceName, params);
-	},
-	/**
-	 * @method getInstance
-	 * @param {String} instanceID
-	 * @return {Object} Required instance or false if can't find it
-	 */
-	getInstance: function(instanceID){
-		var response = false;
-		if(window[instanceID]){
-			response = window[instanceID];
+	killMe : function() {
+		if (this.container) {
+			this.container.destroy()
 		}
-		return response; 
+		delete window[this.id];
 	}
 });
 

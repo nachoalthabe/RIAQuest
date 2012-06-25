@@ -59,11 +59,10 @@ var CatBag = new Class(
 			 * @param {String} resourcesName
 			 */
 			addResourcesToLoad : function(resourcesName) {
-				resourcesName.each(function(elem) {
+				resourcesName.each(function(elem){
 					if (this.resources[elem] == undefined) {
 						this.app.addResourceToLoad(this, elem);
 						this.resourcesToLoad++;
-						this.app.loadResource();
 					}
 				}.bind(this))
 			},
@@ -140,6 +139,7 @@ var CatBag = new Class(
 					this.resources[resourceName] = this.app.loadResource(this
 							.getResourcePath(resourceName, true), this
 							.getClassID(resourceName, '_'));
+					return this.resources[resourceName];
 				}
 			},
 			/**
@@ -150,28 +150,27 @@ var CatBag = new Class(
 			 */
 			getInstance : function(resourceName, params) {
 				var classID = this.getResource(resourceName);
-				if (!window[classID])
-					throw ('Resource ' + resourceName
-							+ ' not loaded in CatBag ' + this.name + '.');
-				var instanceID;
-				if (window[classID].prototype.Persist == true) {
-					instanceID = this.getInstanceID(resourceName, 'persisted',
-							'_');
-				} else {
-					instanceID = this.getInstanceID(resourceName, String
-							.uniqueID(), '_');
-				}
-				if (!window[instanceID]) {
+				// var response = new window[this._resources[resource]]();
+				// var scriptElement = '<script id="'+id+'"
+				// type="text/javascript">var
+				// '+id+' = new (new
+				// Class('+this._resources[resource]+'))();</script>';
+				// document.write(scriptElement);
+				var instanceID = this.getInstanceID(resourceName, String
+						.uniqueID(), '_');
+				if (true) {
 					window[instanceID] = new window[classID]();
-					window[instanceID].setContext({
-						app : this.app,
-						id : instanceID,
-						folder : this.getResourcePath(resourceName, false),
-						name : this.getResourceFilename(resourceName, true),
-						params : params,
-					});
-
+				} else {
+					window[instanceID] = new Class(window[classID])();
 				}
+
+				window[instanceID].setContext({
+					app : this.app,
+					id : instanceID,
+					folder : this.getResourcePath(resourceName, false),
+					name : this.getResourceFilename(resourceName, true),
+					params : params,
+				});
 				return window[instanceID];
 			}
 		});
