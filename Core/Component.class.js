@@ -4,6 +4,7 @@
  */
 var Component = new Class({
 	Implements : [ Options, Events ],
+	isReady: false,
 	/**
 	 * @protected
 	 * @property app
@@ -85,24 +86,18 @@ var Component = new Class({
 		return false;
 	},
 	/**
-	 * @method execute
-	 * @param {String} operationID
-	 * @param {Object} params
-	 * @returns {Boolean}
-	 * @chainable
+	 * @public
+	 * @method destroy
 	 */
-	execute : function(operationID, params) {//TODO Implenetar
-		return false;
+	destroy : function(){
+		this._destroy();
 	},
-	/**
-	 * @protected
-	 * @method killMe
-	 */
-	killMe : function() {
-		if (this.container) {
-			this.container.destroy()
+	_destroy : function() {
+		//console.log('_destroy',this.getID());
+		if (this.DOM) {
+			this.DOM.destroy();
 		}
-		delete window[this.id];
+		delete window[this.getID()];
 	},
 	/**
 	 * @method _getResource
@@ -138,21 +133,11 @@ var Component = new Class({
 		return instance;
 	},
 	/**
-	 * @method _delResource
-	 * @private
-	 * @param {String}
-	 *          type ('view'|'component'|'service'|'model')
-	 * @param {String}
-	 *          resourceName
-	 * @return {Boolean} Can delete
+	 * @method getID
+	 * @return {String} InstanceID
 	 */
-	_delResource : function(type, resourceName) {
-		if (this.resources[type][viewName]) {
-			delete this.resources[type][viewName];
-			return true;
-		} else {
-			return false;
-		}
+	getID: function(){
+		return this.id;
 	},
 	/**
 	 * @method getView
@@ -164,15 +149,6 @@ var Component = new Class({
 		return this._getResource('view', viewName, params);
 	},
 	/**
-	 * @method delView
-	 * @param {String}
-	 *          viewName
-	 * @return {View}
-	 */
-	delView : function(viewName) {
-		return this._delResource('view', viewName);
-	},
-	/**
 	 * @method getController
 	 * @param {String}
 	 *          controllerName
@@ -181,13 +157,8 @@ var Component = new Class({
 	getController : function(controllerName,params) {
 		return this._getResource('controller', controllerName, params);
 	},
-	/**
-	 * @method delController
-	 * @param {String} controllerName
-	 * @return {Controller}
-	 */
-	delController : function(controllerName) {
-		return this._delResource('controller', controllerName);
+	executeController: function(controllerName,params) {
+		this.app.executeController(controllerName, params);
 	},
 	/**
 	 * @method getModel
@@ -199,14 +170,6 @@ var Component = new Class({
 		return this._getResource('model', modelName, params);
 	},
 	/**
-	 * @method delModel
-	 * @param {String} modelName
-	 * @return {Model}
-	 */
-	delModel : function(modelName) {
-		return this._delResource('model', modelName);
-	},
-	/**
 	 * @method getService
 	 * @param {String} serviceName
 	 * @return {Service}
@@ -215,13 +178,21 @@ var Component = new Class({
 		return this._getResource('service', serviceName, params);
 	},
 	/**
-	 * @method delService
-	 * @param {String} serviceName
-	 * @return {Service}
+	 * @method getInstance
+	 * @param {String} instanceID
+	 * @return {Object} Required instance or false if can't find it
 	 */
-	delService : function(serviceName) {
-		return this._delResource('service', serviceName);
+	getInstance: function(instanceID){
+		var response = false;
+		if(window[instanceID]){
+			response = window[instanceID];
+		}
+		return response; 
 	},
+	ready : function() {
+		this.isReady = true;
+		this.fireEvent('ready', [ this ]);
+	}
 });
 
 /**

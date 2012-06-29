@@ -5,7 +5,6 @@
  */
 var View = new Class({
 	Extends : Component,
-	isReady: false,
 	_modelReady : true,
 	model : null,
 	_themeReady : true,
@@ -80,8 +79,4 @@ var View = new Class({
 	render : function() {
 		this.ready();
 	},
-	ready : function() {
-		this.isReady = true;
-		this.fireEvent('ready', [ this ]);
-	}
 });
