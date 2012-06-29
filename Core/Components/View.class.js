@@ -28,8 +28,11 @@ var View = new Class({
   getTheme: function(themeName){
   	var req = new Request({
 			url : this.sourceFolder+'themes/'+themeName+'.html',
-			async : false,
+			async : true,
 			evalResponse: false,
+			onSuccess : function(){
+				this.render();
+			}.bind(this),
 			onFailure : function() {
 				throw ('Unable to load resource ' + resource);
 			}

@@ -283,6 +283,7 @@ var Application = new Class(
 			 * @chainable
 			 */
 			start : function() {
+				this.fireEvent('ready');
 				if (this.options.init.controller != '')
 					this.executeController(this.options.init.controller,
 							this.options.init.arguments);
@@ -337,8 +338,6 @@ var Application = new Class(
 			 */
 			loadResource : function() {
 				var resource = this.resourceQueue.pop();
-				if (resource == undefined)
-					return false
 				resource.path = resource.catBag.getResourcePath(resource.resourceName,
 						true);
 				resource.classID = resource.catBag.getClassID(resource.resourceName,
