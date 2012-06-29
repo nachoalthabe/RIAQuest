@@ -4,41 +4,41 @@
  * @constructor
  * @required
  * @param {Object}
- *            [options]
+ *          [options]
  * @required
  * @param {String}
- *            [options.name]
+ *          [options.name]
  * @required
  * @param {Object}
- *            [options.folders]
+ *          [options.folders]
  * @param {String}
- *            [options.folders.base]
+ *          [options.folders.base]
  * @param {String}
- *            [options.folders.core]
+ *          [options.folders.core]
  * @param {String}
- *            [options.folders.views]
+ *          [options.folders.views]
  * @param {String}
- *            [options.folders.controllers]
+ *          [options.folders.controllers]
  * @param {String}
- *            [options.folders.models]
+ *          [options.folders.models]
  * @param {String}
- *            [options.folders.services]
+ *          [options.folders.services]
  * @param {Object}
- *            [options.resources]
+ *          [options.resources]
  * @param {String}
- *            [options.resources.views]
+ *          [options.resources.views]
  * @param {String}
- *            [options.resources.controllers]
+ *          [options.resources.controllers]
  * @param {String}
- *            [options.resources.models]
+ *          [options.resources.models]
  * @param {String}
- *            [options.resources.services]
+ *          [options.resources.services]
  * @param {Object}
- *            [options.init]
+ *          [options.init]
  * @param {String}
- *            [options.init.controller]
+ *          [options.init.controller]
  * @param {Object}
- *            [options.init.arguments]
+ *          [options.init.arguments]
  * @uses ControllersCatBag
  * @uses ModelsCatBag
  * @uses OperationsCatBag
@@ -47,7 +47,7 @@
  */
 var Application = new Class(
 		{
-						Implements : [ Options, Events ],
+			Implements : [ Options, Events ],
 			Binds : [ '_getName', '_getFolderPath' ],
 			classQueue : [ 'Component', 'CatBag', 'SingletonCatBag',
 					'CatBags/ControllersCatBag', 'CatBags/ModelsCatBag',
@@ -61,7 +61,7 @@ var Application = new Class(
 			/**
 			 * @method initialize
 			 * @param {Object}
-			 *            options
+			 *          options
 			 * @return {Application}
 			 * @private
 			 */
@@ -174,7 +174,7 @@ var Application = new Class(
 			/**
 			 * @method getView
 			 * @param {String}
-			 *            viewName
+			 *          viewName
 			 * @return {View}
 			 */
 			getView : function(viewName, params) {
@@ -183,7 +183,7 @@ var Application = new Class(
 			/**
 			 * @method getController
 			 * @param {String}
-			 *            controllerName
+			 *          controllerName
 			 * @return {Controller}
 			 */
 			getController : function(controllerName) {
@@ -192,9 +192,9 @@ var Application = new Class(
 			/**
 			 * @method getModel
 			 * @param {String}
-			 *            modelName
+			 *          modelName
 			 * @param {Object}
-			 *            params
+			 *          params
 			 * @return {Model}
 			 */
 			getModel : function(modelName, params) {
@@ -203,7 +203,7 @@ var Application = new Class(
 			/**
 			 * @method getService
 			 * @param {String}
-			 *            serviceName
+			 *          serviceName
 			 * @return {Service}
 			 */
 			getService : function(serviceName) {
@@ -212,7 +212,7 @@ var Application = new Class(
 			/**
 			 * @method getOperations
 			 * @param {String}
-			 *            operationID
+			 *          operationID
 			 * @return {Operation}
 			 */
 			getOperations : function(operationID) {
@@ -221,7 +221,7 @@ var Application = new Class(
 			/**
 			 * @method getStoreKey
 			 * @param {String}
-			 *            key
+			 *          key
 			 * @return {Object}
 			 */
 			getStoreKey : function(key) {
@@ -234,9 +234,9 @@ var Application = new Class(
 			/**
 			 * @method setStoreKey
 			 * @param {String}
-			 *            key
+			 *          key
 			 * @param {Object}
-			 *            value
+			 *          value
 			 * @return {Object}
 			 */
 			setStoreKey : function(key, value) {
@@ -250,7 +250,7 @@ var Application = new Class(
 			/**
 			 * @method getCatBagFolderPath
 			 * @param {String}
-			 *            catBagName
+			 *          catBagName
 			 * @return {String}
 			 */
 			getCatBagFolderPath : function(catBagName) {
@@ -259,7 +259,7 @@ var Application = new Class(
 			/**
 			 * @method getCatBagResources
 			 * @param {String}
-			 *            catBagName
+			 *          catBagName
 			 * @return {Array} Resources
 			 */
 			getCatBagResources : function(catBagName) {
@@ -268,9 +268,9 @@ var Application = new Class(
 			/**
 			 * @method executeController
 			 * @param {String}
-			 *            controllerName
+			 *          controllerName
 			 * @param {Object}
-			 *            params
+			 *          params
 			 * @return {OperationID}
 			 */
 			executeController : function(controllerName, params) {
@@ -291,9 +291,9 @@ var Application = new Class(
 			/**
 			 * @method addResourceToLoad
 			 * @param {CatBag}
-			 *            catBag
+			 *          catBag
 			 * @param {String}
-			 *            resourceName
+			 *          resourceName
 			 */
 			addResourceToLoad : function(catBag, resourceName) {
 				this.resourceQueue.push({
@@ -304,7 +304,7 @@ var Application = new Class(
 			/**
 			 * @method catBagOpen
 			 * @param {CatBag}
-			 *            catBag
+			 *          catBag
 			 */
 			catBagOpen : function(catBag) {
 //				console.log('Arranca', catBag.name);
@@ -312,7 +312,7 @@ var Application = new Class(
 			/**
 			 * @method catBagReopen
 			 * @param {CatBag}
-			 *            catBag
+			 *          catBag
 			 */
 			catBagReopen : function(catBag) {
 //				console.log('Rearranca', catBag.name);
@@ -320,7 +320,7 @@ var Application = new Class(
 			/**
 			 * @method catBagClose
 			 * @param {CatBag}
-			 *            catBag
+			 *          catBag
 			 */
 			catBagClose : function(catBag) {
 //				console.log('Cierra', catBag.name);
@@ -333,14 +333,14 @@ var Application = new Class(
 			 * @protected
 			 * @method loadResource
 			 * @param {String}
-			 *            resourceName
+			 *          resourceName
 			 * @returns {String} ClassID
 			 */
 			loadResource : function() {
 				var resource = this.resourceQueue.pop();
 				resource.path = resource.catBag.getResourcePath(resource.resourceName,
 						true);
-			resource.classID = resource.catBag.getClassID(resource.resourceName,
+				resource.classID = resource.catBag.getClassID(resource.resourceName,
 						'_')
 				var req = new Request({
 					url : resource.path,
@@ -357,7 +357,7 @@ var Application = new Class(
 			/**
 			 * @method processDependencies
 			 * @param {Object}
-			 *            requires
+			 *          requires
 			 * @private
 			 */
 			processDependencies : function(requires) {

@@ -4,7 +4,6 @@
  */
 var Component = new Class({
 	Implements : [ Options, Events ],
-	isReady: false,
 	/**
 	 * @protected
 	 * @property app
@@ -89,14 +88,14 @@ var Component = new Class({
 	 * @public
 	 * @method destroy
 	 */
-	destroy : function(){
+	destroy : function() {
 		this._destroy();
 	},
-	_destroy : function() {
-		//console.log('_destroy',this.getID());
-		if (this.DOM) {
-			this.DOM.destroy();
-		}
+	/**
+	 * @provate
+	 * @method _destroy
+	 */
+	_destroy: function() {
 		delete window[this.getID()];
 	},
 	/**
@@ -157,9 +156,6 @@ var Component = new Class({
 	getController : function(controllerName,params) {
 		return this._getResource('controller', controllerName, params);
 	},
-	executeController: function(controllerName,params) {
-		this.app.executeController(controllerName, params);
-	},
 	/**
 	 * @method getModel
 	 * @param {String} modelName
@@ -188,10 +184,6 @@ var Component = new Class({
 			response = window[instanceID];
 		}
 		return response; 
-	},
-	ready : function() {
-		this.isReady = true;
-		this.fireEvent('ready', [ this ]);
 	}
 });
 
