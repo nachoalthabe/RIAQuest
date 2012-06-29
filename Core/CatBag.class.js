@@ -61,6 +61,7 @@ var CatBag = new Class(
 			addResourcesToLoad : function(resourcesName) {
 				resourcesName.each(function(elem) {
 					if (this.resources[elem] == undefined) {
+						this.resources[elem] = false;//Prevent reload...
 						this.app.addResourceToLoad(this, elem);
 						this.resourcesToLoad++;
 						this.app.loadResource();
