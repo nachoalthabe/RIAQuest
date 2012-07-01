@@ -7,11 +7,11 @@ var View = new Class({
   Extends: Component,
   /**
    * @private
-   * @method appendView
+   * @method _appendView
    * @param {Element} htmlOfView
    * @returns {Element}
    */
-  appendView: function(htmlOfView){
+  _appendView: function(htmlOfView){
   	this.container = new Element('div',{
   		id: this.id,
   		html: htmlOfView
@@ -30,14 +30,14 @@ var View = new Class({
 			url : this.sourceFolder+'themes/'+themeName+'.html',
 			async : true,
 			evalResponse: false,
-			onSuccess : function(){
+			onSuccess : function(response){
+				this._appendView(response);
 				this.render();
 			}.bind(this),
 			onFailure : function() {
 				throw ('Unable to load resource ' + resource);
 			}
 		}).get();
-  	return req.response.text;
   },
   /**
    * @method render
