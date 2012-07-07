@@ -4,41 +4,41 @@
  * @constructor
  * @required
  * @param {Object}
- *          [options]
+ *            [options]
  * @required
  * @param {String}
- *          [options.name]
+ *            [options.name]
  * @required
  * @param {Object}
- *          [options.folders]
+ *            [options.folders]
  * @param {String}
- *          [options.folders.base]
+ *            [options.folders.base]
  * @param {String}
- *          [options.folders.core]
+ *            [options.folders.core]
  * @param {String}
- *          [options.folders.views]
+ *            [options.folders.views]
  * @param {String}
- *          [options.folders.controllers]
+ *            [options.folders.controllers]
  * @param {String}
- *          [options.folders.models]
+ *            [options.folders.models]
  * @param {String}
- *          [options.folders.services]
+ *            [options.folders.services]
  * @param {Object}
- *          [options.resources]
+ *            [options.resources]
  * @param {String}
- *          [options.resources.views]
+ *            [options.resources.views]
  * @param {String}
- *          [options.resources.controllers]
+ *            [options.resources.controllers]
  * @param {String}
- *          [options.resources.models]
+ *            [options.resources.models]
  * @param {String}
- *          [options.resources.services]
+ *            [options.resources.services]
  * @param {Object}
- *          [options.init]
+ *            [options.init]
  * @param {String}
- *          [options.init.controller]
+ *            [options.init.controller]
  * @param {Object}
- *          [options.init.arguments]
+ *            [options.init.arguments]
  * @uses ControllersCatBag
  * @uses ModelsCatBag
  * @uses OperationsCatBag
@@ -52,8 +52,9 @@ var Application = new Class(
 			classQueue : [ 'Component', 'CatBag', 'SingletonCatBag',
 					'CatBags/ControllersCatBag', 'CatBags/ModelsCatBag',
 					'CatBags/OperationsCatBag', 'CatBags/ServicesCatBag',
-					'CatBags/ViewsCatBag', 'Components/Controller', 'Components/Model',
-					'Components/Operation', 'Components/Service', 'Components/View' ],
+					'CatBags/ViewsCatBag', 'Components/Controller',
+					'Components/Model', 'Components/Operation',
+					'Components/Service', 'Components/View' ],
 			classLoaded : 0,
 			resourceQueue : [],
 			resourcesWaiting : {},
@@ -61,7 +62,7 @@ var Application = new Class(
 			/**
 			 * @method initialize
 			 * @param {Object}
-			 *          options
+			 *            options
 			 * @return {Application}
 			 * @private
 			 */
@@ -174,7 +175,7 @@ var Application = new Class(
 			/**
 			 * @method getView
 			 * @param {String}
-			 *          viewName
+			 *            viewName
 			 * @return {View}
 			 */
 			getView : function(viewName, params) {
@@ -183,7 +184,7 @@ var Application = new Class(
 			/**
 			 * @method getController
 			 * @param {String}
-			 *          controllerName
+			 *            controllerName
 			 * @return {Controller}
 			 */
 			getController : function(controllerName) {
@@ -192,9 +193,9 @@ var Application = new Class(
 			/**
 			 * @method getModel
 			 * @param {String}
-			 *          modelName
+			 *            modelName
 			 * @param {Object}
-			 *          params
+			 *            params
 			 * @return {Model}
 			 */
 			getModel : function(modelName, params) {
@@ -203,7 +204,7 @@ var Application = new Class(
 			/**
 			 * @method getService
 			 * @param {String}
-			 *          serviceName
+			 *            serviceName
 			 * @return {Service}
 			 */
 			getService : function(serviceName) {
@@ -212,7 +213,7 @@ var Application = new Class(
 			/**
 			 * @method getOperations
 			 * @param {String}
-			 *          operationID
+			 *            operationID
 			 * @return {Operation}
 			 */
 			getOperations : function(operationID) {
@@ -221,7 +222,7 @@ var Application = new Class(
 			/**
 			 * @method getStoreKey
 			 * @param {String}
-			 *          key
+			 *            key
 			 * @return {Object}
 			 */
 			getStoreKey : function(key) {
@@ -234,9 +235,9 @@ var Application = new Class(
 			/**
 			 * @method setStoreKey
 			 * @param {String}
-			 *          key
+			 *            key
 			 * @param {Object}
-			 *          value
+			 *            value
 			 * @return {Object}
 			 */
 			setStoreKey : function(key, value) {
@@ -250,7 +251,7 @@ var Application = new Class(
 			/**
 			 * @method getCatBagFolderPath
 			 * @param {String}
-			 *          catBagName
+			 *            catBagName
 			 * @return {String}
 			 */
 			getCatBagFolderPath : function(catBagName) {
@@ -259,7 +260,7 @@ var Application = new Class(
 			/**
 			 * @method getCatBagResources
 			 * @param {String}
-			 *          catBagName
+			 *            catBagName
 			 * @return {Array} Resources
 			 */
 			getCatBagResources : function(catBagName) {
@@ -268,9 +269,9 @@ var Application = new Class(
 			/**
 			 * @method executeController
 			 * @param {String}
-			 *          controllerName
+			 *            controllerName
 			 * @param {Object}
-			 *          params
+			 *            params
 			 * @return {OperationID}
 			 */
 			executeController : function(controllerName, params) {
@@ -291,9 +292,9 @@ var Application = new Class(
 			/**
 			 * @method addResourceToLoad
 			 * @param {CatBag}
-			 *          catBag
+			 *            catBag
 			 * @param {String}
-			 *          resourceName
+			 *            resourceName
 			 */
 			addResourceToLoad : function(catBag, resourceName) {
 				this.resourceQueue.push({
@@ -304,26 +305,26 @@ var Application = new Class(
 			/**
 			 * @method catBagOpen
 			 * @param {CatBag}
-			 *          catBag
+			 *            catBag
 			 */
 			catBagOpen : function(catBag) {
-//				console.log('Arranca', catBag.name);
+				// console.log('Arranca', catBag.name);
 			},
 			/**
 			 * @method catBagReopen
 			 * @param {CatBag}
-			 *          catBag
+			 *            catBag
 			 */
 			catBagReopen : function(catBag) {
-//				console.log('Rearranca', catBag.name);
+				// console.log('Rearranca', catBag.name);
 			},
 			/**
 			 * @method catBagClose
 			 * @param {CatBag}
-			 *          catBag
+			 *            catBag
 			 */
 			catBagClose : function(catBag) {
-//				console.log('Cierra', catBag.name);
+				// console.log('Cierra', catBag.name);
 				if (this.services.isReady() && this.models.isReady()
 						&& this.controllers.isReady() && this.views.isReady()) {
 					this.start();
@@ -333,15 +334,15 @@ var Application = new Class(
 			 * @protected
 			 * @method loadResource
 			 * @param {String}
-			 *          resourceName
+			 *            resourceName
 			 * @returns {String} ClassID
 			 */
 			loadResource : function() {
 				var resource = this.resourceQueue.pop();
-				resource.path = resource.catBag.getResourcePath(resource.resourceName,
-						true);
-				resource.classID = resource.catBag.getClassID(resource.resourceName,
-						'_')
+				resource.path = resource.catBag.getResourcePath(
+						resource.resourceName, true);
+				resource.classID = resource.catBag.getClassID(
+						resource.resourceName, '_')
 				var req = new Request({
 					url : resource.path,
 					async : true,
@@ -357,7 +358,7 @@ var Application = new Class(
 			/**
 			 * @method processDependencies
 			 * @param {Object}
-			 *          requires
+			 *            requires
 			 * @private
 			 */
 			processDependencies : function(requires) {
@@ -376,59 +377,69 @@ var Application = new Class(
 			},
 			processExtends : function(resource) {
 				var origin = resource.content.match('.*xtends.*');
-//				if (!origin[0]) {
-//					console.log(resource.content);
-//				}
-				resource.extendsResource = origin[0].split(':')[1].split(',')[0].trim();
-				if (window[resource.extendsResource])//Si hereda de una clase existente
+				// if (!origin[0]) {
+				// console.log(resource.content);
+				// }
+				resource.extendsResource = origin[0].split(':')[1].split(',')[0]
+						.trim();
+				if (window[resource.extendsResource])// Si hereda de una
+														// clase existente
 					return resource;
-				var classID = resource.catBag.getClassID(resource.extendsResource);
-				resource.content = resource.content.replace(origin[0], 'Extends: ' + classID + ',//Processed');
+				var classID = resource.catBag
+						.getClassID(resource.extendsResource);
+				resource.content = resource.content.replace(origin[0],
+						'Extends: ' + classID + ',//Processed');
 				if (!window[classID]) {
-					resource.catBag.addResourcesToLoad([resource.extendsResource]);
+					resource.catBag
+							.addResourcesToLoad([ resource.extendsResource ]);
 					return false;
 				}
 			},
 			/**
 			 * @method _loadResource
 			 * @param {String}
-			 *          response
+			 *            response
 			 * @param {Object}
-			 *          resource
+			 *            resource
 			 * @private
 			 */
 			_loadResource : function(response, resource) {
 				if (response != null) {
 					var content = response.toString();
 					content = content.replace(/[\w\W]+?\n+?/, "");
-					content = resource.classID + "={\n" + content;// Para que no se rompa
+					content = resource.classID + "={\n" + content;// Para que
+																	// no se
+																	// rompa
 					resource.content = content;
 				}
-				console.log('resource',resource);
+				console.log('resource', resource);
 				if (this.processExtends(resource) == false) {
 					if (!this.resourcesWaiting[resource.extendsResource])
 						this.resourcesWaiting[resource.extendsResource] = [];
-					this.resourcesWaiting[resource.extendsResource].push(resource);
+					this.resourcesWaiting[resource.extendsResource]
+							.push(resource);
 					return false;
 				}
 
-				var annotation = "\n\n//@ sourceURL=/" + resource.path + "\n\n";
-				var script = '';
-				script = resource.content + annotation;
+				var annotation = "\n\n//@ sourceURL=" + resource.path + "\n\n";
+				var script = resource.content + annotation;
 				try {
-					var object = eval(script);
+					var object = eval(script.toString());
 				} catch (error) {
-					throw ('Unable to eval resource ' + resource.path + "\n" + error.message);
+					console.error('Error in Evaled Script ' + resource.path + ': ' + error.message + ' line:'+(error.lineNumber-427));
+					throw(error);
 				}
 				if (object.Require) {
 					this.processDependencies(object.Require);
 				}
 				window[resource.classID] = new Class(object);
 
-				resource.catBag.resourceLoaded(resource.resourceName, resource.classID);
+				resource.catBag.resourceLoaded(resource.resourceName,
+						resource.classID);
 
 				if (this.resourcesWaiting[resource.resourceName]) {
-					this.resourcesWaiting[resource.resourceName].each(function(resource) {
+					this.resourcesWaiting[resource.resourceName].each(function(
+							resource) {
 						this._loadResource(null, resource);
 					}.bind(this))
 				}
