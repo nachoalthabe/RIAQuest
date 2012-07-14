@@ -184,7 +184,90 @@ var Component = new Class({
 			response = window[instanceID];
 		}
 		return response; 
-	}
+	},
+	callbackMap: {},
+	getDatas: function(requests, callback){
+		var waitFor = Object.getLength(requests);
+		var url,params,method;
+		Object.each(requests,function(request,index){
+			if(typeof request == 'Object'){
+				url = request.url;
+			}else{
+				url = request;
+				requests[index] = {
+						url: url,
+						response: false
+				}
+			}
+			params = (request.params)?request.params:{};
+			method = (request.method)?request.method:'get';
+			var req = new Request({
+				url : url,
+				async : true,
+				evalResponse: false,
+				onSuccess : function(response){
+					waitFor --;
+					requests[index].response = response;
+						if ( waitFor == 0 ){
+							this[callback].apply(this, [requests]);
+						};
+					fireEvent('dataReady',[response,url,this]);
+				}.bind(this),
+				onFailure : function() {
+					throw ('Unable to load data ' + url);
+				}.bind(this)
+			});
+			if(method == 'get'){
+				req.get(params);
+			}else{
+				req.post(params);
+			}
+		}.bind(this));
+	},
+	 /**
+	   * @private
+	   * @method getData
+	   * @param {String} dataURL
+	   * @param {String} Function name to callback
+	   * @returns {Element}
+	   */
+	  getData: function(url,callback){
+		  if(callback != undefined){
+			  if (!this.callbackMap[callback]){
+				  this.callbackMap[callback] = {
+					  waitFor: 0,
+					  responses: []
+				  }
+			  }else{
+				  this.callbackMap[callback].waitFor++;
+			  }
+		  }
+	  	var req = new Request({
+				url : url,
+				async : true,
+				evalResponse: false,
+				onSuccess : function(response){
+					if (this.callbackMap[callback] != undefined){
+						this.callbackMap[callback].responses.push({
+							url : url,
+							response: response
+						});
+						if ( this.callbackMap[callback].waitFor == 0 ){
+							if(this.callbackMap[callback].responses.lenght == 1){
+								var argument = this.callbackMap[callback].responses[0]
+							}else{
+								this[callback].apply(this, this.callbackMap[callback].responses);
+							}
+						}
+						this.callbackMap[callback].waitFor--;
+					}
+					fireEvent('dataReady',[response,url,this]);
+				}.bind(this),
+				onFailure : function() {
+					throw ('Unable to load data ' + url);
+				}
+			}).get();
+	  }
 });
 
 /**

@@ -11,7 +11,7 @@ var View = new Class({
    * @param {Element} htmlOfView
    * @returns {Element}
    */
-  _appendView: function(htmlOfView){
+   appendView: function(htmlOfView){
   	this.container = new Element('div',{
   		id: this.id,
   		html: htmlOfView
@@ -31,8 +31,9 @@ var View = new Class({
 			async : true,
 			evalResponse: false,
 			onSuccess : function(response){
-				this._appendView(response);
-				this.render();
+				if(this.render && typeof this.render == 'function')
+					this.render(response)
+				fireEvent('themeReady',[response,themeName,this]);
 			}.bind(this),
 			onFailure : function() {
 				throw ('Unable to load resource ' + resource);
